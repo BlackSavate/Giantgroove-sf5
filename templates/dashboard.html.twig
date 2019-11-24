@@ -3,9 +3,4 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block body %}
-  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-    <a href="{{ path('logout') }}">logout</a>
-  {% else %}
-    <a href="{{ path('login') }}">login</a>
-  {% endif %}
 {% endblock %}

@@ -1,0 +1,6 @@
+@import "./variables.scss";
+
+nav {
+  border: 5px solid lighten($bc-color, $ease);
+  border-style: inset;
+}

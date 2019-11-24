@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block body %}
+  <h1>Page de {{ user.username }}</h1>
+  <ul>
+    <li>Prénom: {{ user.firstname }}</li>
+    <li>Nom: {{ user.lastname }}</li>
+    <li>Email: {{ user.email }}</li>
+    <li>Actif: {{ user.isActive?'Oui':'Non' }}</li>
+    <li>
+      Rôles:
+      <ul>
+        {% for role in user.roles %}
+            <li>{{ role }}</li>
+        {% endfor %}
+      </ul>
+    </li>
+  </ul>
+{% endblock %}

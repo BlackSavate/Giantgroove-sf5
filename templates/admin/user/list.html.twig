@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block body %}
+  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% if userList %}
+      <table>
+        <thead>
+          <th>Id</th>
+          <th>Username</th>
+          <th>Active</th>
+          <th>Roles</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          {% for user in userList %}
+            <tr>
+              <td>{{ user.id }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.isActive?'yes':'no' }}</td>
+              <td>
+                <ul>
+                  {% for role in user.roles %}
+                    <li>{{ role }}</li>
+                  {% endfor %}
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>
+                    <a href="{{ path('admin_user_update', {'slug':  user.slug}) }}">Edit</a>
+                  </li>
+                  <li>
+                    <a href="">Disable</a>
+                  </li>
+              </ul>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+  {% endif %}
+{% endblock %}
