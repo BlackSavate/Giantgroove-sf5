@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit {{ user.username }}{% endblock %}
+{% block title %}{{ 'edit'|trans|capitalize }} {{ user.username }}{% endblock %}
 
 {% block body %}
   {% if is_granted('IS_AUTHENTICATED_FULLY') %}
   {{ form_start(form) }}
       {{ form_widget(form) }}
-      <input class="button" type="submit" value="Edit" />
+      <input class="button btn btn-secondary" type="submit" value="{{ 'edit'|trans|capitalize }}" />
   {{ form_end(form) }}
   {% endif %}
 {% endblock %}

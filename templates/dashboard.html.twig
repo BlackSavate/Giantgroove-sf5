@@ -1,6 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}{{ 'dashboard'|trans|capitalize }}{% endblock %}
+
+{% block breadcrumb %}
+<a href="{{ path('homepage') }}">{{ 'home'|trans|capitalize }}</a> &gt;
+<span class="bc-current">{{ 'dashboard'|trans|capitalize }}</span>
+{% endblock %}
 
 {% block body %}
+<div class="row">
+  <section class="col-12">
+    <h1>{{ 'dashboard'|trans|capitalize }}</h1>
+    <hr>
+  </section>
+</div>
+
 {% endblock %}

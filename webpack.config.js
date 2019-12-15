@@ -27,6 +27,7 @@ Encore
     .addEntry('normalize', './assets/css/normalize.css')
     .addEntry('menu', './assets/css/menu.scss')
     .addEntry('app', './assets/css/app.scss')
+    .addEntry('admin', './assets/css/admin.scss')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 

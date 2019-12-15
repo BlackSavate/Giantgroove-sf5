@@ -2,20 +2,15 @@
 
 namespace App\Controller\Admin;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
-* @Route("/admin", name="admin_")
-* @IsGranted("ROLE_ADMIN")
+* @Route("/admin/dashboard", name="admin_dashboard_")
 */
-class DashboardController extends AbstractController
+class DashboardController extends AdminBaseController
 {
     /**
-     * @Route("/dashboard", name="dashboard")
+     * @Route("/", name="dashboard")
      * @return Response
      */
     public function dashboard()

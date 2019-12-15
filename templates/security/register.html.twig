@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ 'register'|trans|capitalize }}{% endblock %}
+
 {% block body %}
-    <h1>Nouveau Compte</h1>
-    <small class="text-secondary">Les champs marqués d'une * sont obligatoires</small>
+    <h1>{{ 'new_account'|trans|capitalize }}</h1>
+    <small class="text-secondary">{{ 'required_fields'|trans|capitalize }}</small>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input class="button" type="submit" value="Créer" />
+        <input class="button bnt btn-secondary" type="submit" value="{{ 'create'|trans|capitalize }}" />
     {{ form_end(form) }}
 {% endblock %}

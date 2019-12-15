@@ -2,20 +2,22 @@
 
 {% block title %}{{ user.username }}{% endblock %}
 
+{% block breadcrumb %}
+<a href="{{ path('homepage') }}">{{ 'home'|trans|capitalize }}</a> &gt;
+<span class="bc-current">{{ 'profile_of_user'|trans({'%username%': user.username})|capitalize }}</span>
+{% endblock %}
+
 {% block body %}
-  <h1>Page de {{ user.username }}</h1>
+  <h1>{{ 'profile_of_user'|trans({'%username%': user.username})|capitalize }}</h1>
   <ul>
-    <li>Prénom: {{ user.firstname }}</li>
-    <li>Nom: {{ user.lastname }}</li>
-    <li>Email: {{ user.email }}</li>
-    <li>Actif: {{ user.isActive?'Oui':'Non' }}</li>
-    <li>
-      Rôles:
-      <ul>
-        {% for role in user.roles %}
-            <li>{{ role }}</li>
-        {% endfor %}
-      </ul>
-    </li>
+    <li>{{ user.firstname }} {{ user.lastname }} ({{ user.email }})</li>
+    <li>Né le {{ user.birthdate|date('d M Y') }}</li>
+    <li>{{ user.address1 }}</li>
+    {% if user.address2 %}
+      <li>{{ user.address2 }}</li>
+    {% endif %}
+    <li>{{ user.zipcode }} {{ user.city }}</li>
+    <li>{{ user.country|upper }}</li>
   </ul>
+  <button type="button" name="button" class="btn btn-secondary"><a href="{{ path('user_update',{ 'slug': user.slug }) }}">{{ 'edit'|trans|capitalize }}</a></button>
 {% endblock %}

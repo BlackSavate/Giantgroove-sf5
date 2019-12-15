@@ -4,3 +4,31 @@ body {
   background-color: $bc_color;
   color: $color;
 }
+
+#breadcrumb {
+  .bc-current {
+    color: $admin;
+  }
+}
+
+
+a {
+  color: white;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+section, aside {
+  display: inline-block;
+  background-color: lighten($bc-color, $easiest);
+  border: 3px inset lighten($bc-color, $ease);
+  h1 {
+    text-align: center;
+  }
+  hr {
+    border: 1px solid $bc-color;
+    margin: 1em;
+  }
+}

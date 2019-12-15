@@ -2,20 +2,43 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Welcome!{% endblock title %}</title>
         {% block stylesheets %}
           {{ encore_entry_link_tags('reset') }}
           {{ encore_entry_link_tags('normalize') }}
           {{ encore_entry_link_tags('menu') }}
+          {% if 'admin' in app.request.uri %}
+            {{ encore_entry_link_tags('admin') }}
+          {% endif %}
           {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+        {% endblock stylesheets %}
     </head>
     <body class="container">
         {{ include('parts/menu.html.twig') }}
+        <div id="breadcrumb" class="mb-2">{% block breadcrumb %}{% endblock %}</div>
+        {% block flash_message %}
+          {% set flash_message_types = {
+              'error': 'danger',
+              'warning':'warning',
+              'info':'info',
+              'success': 'success'
+            }
+          %}
+          {% for type, class in flash_message_types %}
+            {% for message in app.flashes(type) %}
+              <div class="alert alert-{{class}}">
+                  {{ message }}
+              </div>
+            {% endfor %}
+          {% endfor %}
+        {% endblock flash_message %}
         {% block body %}
-        {% endblock %}
+        {% endblock body %}
+        {% block footer %}
+          {{ include('parts/footer.html.twig') }}
+        {% endblock footer %}
         {% block javascripts %}
           {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+        {% endblock javascripts %}
     </body>
 </html>

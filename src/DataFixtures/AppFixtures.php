@@ -23,8 +23,7 @@ class AppFixtures extends Fixture
         $user->setSlug('simon-belaud');
         $user->setPassword($this->passwordEncoder->encodePassword($user, 'DivFol42'));
         $user->setEmail('blacksavate@outlook.fr');
-        $user->setAddressNumber('83');
-        $user->setAddress1('Route de l\'Ormeau');
+        $user->setAddress1('83 Route de l\'Ormeau');
         $user->setZipcode(86180);
         $user->setCity('Buxerolles');
         $user->setCountry('France');

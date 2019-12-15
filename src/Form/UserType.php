@@ -3,14 +3,13 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class UserType extends AbstractType
@@ -85,20 +84,8 @@ class UserType extends AbstractType
                     new Assert\NotBlank(),
                 ],
             ])
-            ->add('addressNumber', null, [
-                'label' => 'N° *',
-                'constraints' => [
-                    new Assert\NotBlank(),
-                    new Assert\Length([
-                        'min' => 1,
-                        'max' => 15,
-                        'minMessage' => 'Ce champ ne doit pas être vide',
-                        'maxMessage' => 'Ce champ ne doit pas dépasser {{ limit }} caractères',
-                    ])
-                ],
-            ])
             ->add('address1', null, [
-                'label' => 'Voie, Rue... *',
+                'label' => 'Numéro, Voie, Rue... *',
                 'constraints' => [
                     new Assert\NotBlank(),
                     new Assert\Length([
@@ -185,7 +172,7 @@ class UserType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_user';
+        return 'app_user';
     }
 
 

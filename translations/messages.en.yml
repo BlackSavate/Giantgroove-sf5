@@ -1,0 +1,37 @@
+actions: ~
+active: ~
+admin: ~
+back: ~
+band: ~
+create: ~
+dashboard: ~
+disable: ~
+edit: ~
+home: ~
+link: ~
+login: ~
+logout: ~
+menu: ~
+mix: ~
+my_account: my account
+new_account: new account
+no: ~
+not_registered: not registered? click %link_start%here%link_end%
+password: ~
+patch_note: patch note
+profile_of_user: profile of %username%
+project: ~
+random: ~
+register: ~
+required_fields: fields marked with a * are required
+roles: ~
+user: ~
+username: ~
+validate: ~
+yes: ~
+
+form:
+  user:
+    username: ~
+    email: ~
+    password: ~

@@ -1,0 +1,31 @@
+actions: ~
+active: actif
+admin: ~
+back: retour
+band: groupe
+create: créer
+dashboard: tableau de bord
+disable: désactiver
+edit: modifier
+home: accueil
+link: lien
+login: connexion
+logout: déconnexion
+menu: ~
+mix: mix
+my_account: mon compte
+new_account: nouveau compte
+no: non
+not_registered: pas encore inscrit? par %link_start%ici%link_end%
+password: mot de passe
+patch_note: note de patch
+profile_of_user: profil de %username%
+project: projet
+random: aléatoire
+register: inscription
+required_fields: les champs marqués d'une * sont obligatoires
+roles: ~
+username: nom d'utilisateur
+user: utilisateur
+validate: valider
+yes: oui

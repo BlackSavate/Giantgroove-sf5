@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin Dashboard{% endblock %}
+{% block title %}{{ 'admin'|trans|capitalize }} {{ 'dashboard'|trans|capitalize }}{% endblock %}
+
+{% block breadcrumb %}
+<a href="{{ path('homepage') }}">{{ 'home'|trans|capitalize }}</a> &gt;
+<span class="bc-current">{{ 'admin'|trans|capitalize }}</span>
+{% endblock %}
 
 {% block body %}
-  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-    <a href="{{ path('logout') }}">logout</a>
-  {% else %}
-    <a href="{{ path('login') }}">login</a>
-  {% endif %}
   <ul>
-    <li><a href="{{ path('admin_user_list') }}">User</a></li>
+    <li><a href="{{ path('admin_user_list') }}">{{ 'user'|trans|capitalize }}</a></li>
   </ul>
 {% endblock %}

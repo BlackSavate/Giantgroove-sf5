@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin Dashboard{% endblock %}
+{% block title %}{{ 'admin'|trans|capitalize }} {{ 'dashboard'|trans|capitalize }}{% endblock %}
 
 {% block body %}
   {% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -8,17 +8,17 @@
       <table>
         <thead>
           <th>Id</th>
-          <th>Username</th>
-          <th>Active</th>
-          <th>Roles</th>
-          <th>Actions</th>
+          <th>{{ 'username'|trans|capitalize }}</th>
+          <th>{{ 'active'|trans|capitalize }}</th>
+          <th>{{ 'roles'|trans|capitalize }}</th>
+          <th>{{ 'actions'|trans|capitalize }}</th>
         </thead>
         <tbody>
           {% for user in userList %}
             <tr>
               <td>{{ user.id }}</td>
               <td>{{ user.username }}</td>
-              <td>{{ user.isActive?'yes':'no' }}</td>
+              <td>{{ (user.isActive?'yes':'no')|trans|capitalize }}</td>
               <td>
                 <ul>
                   {% for role in user.roles %}
@@ -29,10 +29,10 @@
               <td>
                 <ul>
                   <li>
-                    <a href="{{ path('admin_user_update', {'slug':  user.slug}) }}">Edit</a>
+                    <a href="{{ path('admin_user_update', {'slug':  user.slug}) }}">{{ 'edit'|trans|capitalize }}</a>
                   </li>
                   <li>
-                    <a href="">Disable</a>
+                    <a href="">{{ 'disable'|trans|capitalize }}</a>
                   </li>
               </ul>
               </td>

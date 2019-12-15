@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app_name }}{% endblock %}
+
+{% block breadcrumb %}
+<span class="bc-current">{{ 'home'|trans|capitalize }}</span>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+  <section class="col-8">
+    <h1>{{ 'patch_note'|trans|capitalize }}</h1>
+    <hr>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc convallis nisi orci, at varius libero bibendum sed. Praesent rutrum, ex nec semper lobortis, risus arcu lobortis dui, vel posuere ligula diam nec tellus. Praesent commodo massa lacus, ut dictum neque porta eget. Donec eleifend, libero et mattis venenatis, velit nisi euismod quam, eget euismod arcu mauris sed nisi. Pellentesque consectetur, velit a dictum lobortis, mi turpis hendrerit dui, et sodales neque ligula at massa. Phasellus id dolor felis. Sed vehicula, lorem sed rutrum tincidunt, mi orci mollis enim, sit amet pellentesque nulla dui et ante. In cursus sagittis tellus, vel malesuada lorem dictum vitae. Duis varius ac tellus vitae convallis.
+    </p>
+    <p>
+      Duis euismod dolor at turpis semper, quis convallis libero commodo. Praesent eu augue nec dolor venenatis venenatis. Cras lorem turpis, consectetur et ultricies id, dictum ac tortor. Aliquam a eros laoreet, cursus nisi sit amet, vestibulum ante. Praesent non arcu sit amet felis efficitur euismod. Suspendisse erat mi, dictum vel diam et, malesuada ultricies urna. Vestibulum volutpat tempus ligula. Vestibulum in pellentesque augue. Ut vehicula euismod nisi vitae dignissim. Praesent semper eget massa vel gravida. Aenean nec urna a nulla efficitur egestas. Pellentesque sit amet ipsum tempus, varius lectus et, tincidunt quam. Ut a condimentum leo. Sed volutpat nisi lectus, eget finibus nibh iaculis ac. Donec sed ultricies purus, non viverra felis. Vivamus convallis, metus nec maximus bibendum, felis mi vestibulum velit, et euismod orci dui vel ipsum.
+  </p>
+  </section>
+  <aside class="col-4">
+    <h1>{{ 'random' | trans | capitalize }}</h1>
+    <div class="d-flex align-center">
+      <button type="button" name="button" class="btn btn-secondary">{{ 'band'|trans|capitalize }}</button>
+      <button type="button" name="button" class="btn btn-secondary">{{ 'mix'|trans|capitalize }}</button>
+      <button type="button" name="button" class="btn btn-secondary">{{ 'project'|trans|capitalize }}</button>
+    </div>
+    <hr>
+    <ul>
+      {% for key in 1..15 %}
+          <li><a href="">{{ 'band'|trans|capitalize }} {{ key }}</a></li>
+      {% endfor %}
+    </ul>
+  </aside>
+</div>
+{% endblock %}

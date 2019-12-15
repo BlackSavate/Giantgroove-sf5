@@ -1,26 +1,33 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="{{ path('dashboard') }}">GiantGroove</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<header>
+  <div class="row">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark col-12">
+      <a class="navbar-brand" href="{{ path('homepage') }}">{{ app_name }}</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ path('dashboard') }}">DashBoard <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ path('admin_dashboard') }}">Admin</span></a>
-      </li>
-    </ul>
-    <ul>
-      <li>
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-          <a href="{{ path('logout') }}">Logout</a>
-        {% else %}
-          <a href="{{ path('login') }}">Login</a>
-        {% endif %}
-      </li>
-    </ul>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('dashboard') }}">{{ 'dashboard'|trans|capitalize }}<span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+              {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('admin_dashboard_dashboard') }}" class="btn btn-warning">{{ 'admin'|trans|capitalize }}</a>
+              {% endif %}
+              <a href="{{ path('user_detail', {'slug': app.user.slug }) }}" class="btn btn-secondary">{{ 'my_account'|trans|capitalize }}</a>
+              <a href="{{ path('logout') }}" class="btn btn-secondary">{{ 'logout'|trans|capitalize }}</a>
+            {% else %}
+              <a href="{{ path('register') }}" class="btn btn-secondary">{{ 'register'|trans|capitalize }}</a>
+              <a href="{{ path('login') }}" class="btn btn-secondary">{{ 'login'|trans|capitalize }}</a>
+            {% endif %}
+          </li>
+        </ul>
+      </div>
+    </nav>
   </div>
-</nav>
+
+</header>

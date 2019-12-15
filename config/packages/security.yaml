@@ -21,7 +21,7 @@ security:
                 default_target_path: dashboard
             logout:
                 path: logout
-                target: dashboard
+                target: homepage
 
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
