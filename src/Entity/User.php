@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Symfony\Component\Security\Core\User\UserInterface;
-use Doctrine\ORM;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
