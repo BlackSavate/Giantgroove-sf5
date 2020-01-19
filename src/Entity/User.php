@@ -102,6 +102,11 @@ class User implements UserInterface
      */
     private $roles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="author")
+     */
+    private $projects;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -331,5 +336,29 @@ class User implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+    /**
+     * Get the value of Projects
+     *
+     * @return mixed
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /**
+     * Set the value of Projects
+     *
+     * @param mixed projects
+     *
+     * @return User
+     */
+    public function setProjects($projects)
+    {
+        $this->projects = $projects;
+
+        return $this;
+    }
+
 
 }

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block breadcrumb %}
+<a href="{{ path('homepage') }}">{{ 'home'|trans|capitalize }}</a> &gt;
+<a href="{{ path('project_list') }}">{{ 'projects'|trans|capitalize }}</a> &gt;
+<span class="bc-current">{{ project.title|capitalize }}</span>
+{% endblock %}
+
+{% block body %}
+  <h1>{{ project.title|capitalize }}</h1>
+  <button type="button" name="button" class="btn btn-secondary"><a href="{{ path('project_update',{ 'slug': project.slug }) }}">{{ 'edit'|trans|capitalize }}</a></button>
+{% endblock %}

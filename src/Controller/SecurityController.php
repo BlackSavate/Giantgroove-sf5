@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 class SecurityController extends AbstractController
 {
@@ -49,7 +50,8 @@ class SecurityController extends AbstractController
 
             $currentDate = new \Datetime();
             $user = $form->getData();
-            $user->setSlug($user->getUsername());
+            $slugger = new AsciiSlugger();
+            $user->setSlug($slugger->slug($user->getUsername()));
             $user->setCreatedAt($currentDate);
             $user->setUpdatedAt($currentDate);
             $user->setIsActive(true);

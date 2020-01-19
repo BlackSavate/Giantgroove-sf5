@@ -1,10 +1,12 @@
 actions: ~
 active: ~
 admin: ~
+author: ~
 back: ~
 band: ~
 create: ~
 dashboard: ~
+delete: ~
 disable: ~
 edit: ~
 home: ~
@@ -15,18 +17,23 @@ menu: ~
 mix: ~
 my_account: my account
 new_account: new account
+new_project: new project
 no: ~
 not_registered: not registered? click %link_start%here%link_end%
+nothing_to_display: there is nothing to display in this section
 password: ~
 patch_note: patch note
 profile_of_user: profile of %username%
 project: ~
+projects: ~
 random: ~
 register: ~
 required_fields: fields marked with a * are required
 roles: ~
+unable: ~
 user: ~
 username: ~
+users: ~
 validate: ~
 yes: ~
 

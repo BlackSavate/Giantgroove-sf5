@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'new_project'|trans|capitalize }}{% endblock %}
+
+{% block breadcrumb %}
+    <a href="{{ path('homepage') }}">{{ 'home'|trans|capitalize }}</a> &gt;
+    <a href="{{ path('project_list') }}">{{ 'projects'|trans|capitalize }}</a> &gt;
+    <span class="bc-current">{{ 'new_project'|trans|capitalize }}</span>
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'new_project'|trans|capitalize }}</h1>
+    <small class="text-secondary">{{ 'required_fields'|trans|capitalize }}</small>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input class="button btn btn-secondary" type="submit" value="{{ 'create'|trans|capitalize }}" />
+    {{ form_end(form) }}
+{% endblock %}

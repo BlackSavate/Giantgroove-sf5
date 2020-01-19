@@ -20,4 +20,10 @@
     <li>{{ user.country|upper }}</li>
   </ul>
   <button type="button" name="button" class="btn btn-secondary"><a href="{{ path('user_update',{ 'slug': user.slug }) }}">{{ 'edit'|trans|capitalize }}</a></button>
+  <h2>{{ 'my_projects'|trans|capitalize }}</h2>
+  <ul>
+  {% for project in user.projects %}
+    <li><a href="{{ path('project_detail', { 'slug': project.slug }) }}">{{ project.title }}</a></li>
+  {% endfor %}
+  </ul>
 {% endblock %}

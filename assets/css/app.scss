@@ -32,3 +32,13 @@ section, aside {
     margin: 1em;
   }
 }
+
+th, td {
+  border: 1px solid white;
+  background-color: lighten($bc-color, $easiest);
+  padding: .5em;
+}
+
+th{
+  font-weight: bold;
+}
