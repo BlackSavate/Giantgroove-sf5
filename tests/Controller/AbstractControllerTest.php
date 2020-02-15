@@ -45,6 +45,21 @@ abstract class AbstractControllerTest extends WebTestCase {
         $em->flush();
     }
 
+    protected function addToPersistedFixtures($entity) {
+        $this->persistedFixtures[] = [
+            'entityClass' => get_class($entity),
+            'id' => $entity->getId()
+        ];
+    }
+
+    protected function submitForm($crawler, $buttonValue, $values) {
+        $form = $crawler->selectButton($buttonValue)->form();
+        // set some values
+        $form->setValues($values);
+
+        $this->client->submit($form);
+    }
+
     protected function save($className, $id)
     {
         $this->persistedFixtures[] = [

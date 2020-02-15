@@ -33,29 +33,36 @@ class SecurityControllerTest extends AbstractControllerTest
     }
 
     public function testRegister() {
-        $this->client->request('GET', '/register');
+        $crawler = $this->client->request('GET', '/register');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->client->request('POST', '/register', [
-            'app_user[username]' => 'test',
-            'app_user[firstname]' => 'test',
-            'app_user[lastname]' => 'test',
-            'app_user[password][first]' => 'Totoro123!',
-            'app_user[password][second]' => 'Totoro123',
-            'app_user[email][first]' => 'mail@mail.com',
-            'app_user[email][second]' => 'mail@mail.com',
-            'app_user[address1]' => 'test',
-            'app_user[address2]' => 'test',
-            'app_user[zipcode]' => 42424,
-            'app_user[city]' => 'test',
-            'app_user[country]' => 'test',
-            'app_user[birthdate][month]' => 1,
-            'app_user[birthdate][day]' => 1,
-            'app_user[birthdate][year]' => 1970,
-            'app_user[avatar]' => null,
+
+        $this->submitForm($crawler, 'Créer', [
+            'app_user[username]'=> 'test',
+            'app_user[firstname]'=> 'test',
+            'app_user[lastname]'=> 'toto',
+            'app_user[password]'=> [
+                'first' => 'Totoro123',
+                'second' => 'Totoro123'
+            ],
+            'app_user[email]'=> [
+                'first' => 'test@mail.com',
+                'second' => 'test@mail.com',
+            ],
+            'app_user[address1]'=> '83 ROUTE DE L\'ORMEAU',
+            'app_user[address2]'=>' ',
+            'app_user[zipcode]'=> 86180,
+            'app_user[city]'=> 'BUXEROLLES',
+            'app_user[country]'=> 'France',
+            'app_user[birthdate]' => [
+                'year' => 1970,
+                'month' => 1,
+                'day' => 1
+            ],
         ]);
-        $this->assertEquals(204, $this->client->getResponse()->getStatusCode(), $this->client->getResponse()->getContent());
+
         $repo = $this->em->getRepository(User::class);
-        $user = $repo->findOneByUsername('test');
+        $user = $repo->findOneBy(['username' => 'test']);
         $this->assertNotNull($user);
+        $this->addToPersistedFixtures($user);
     }
 }
