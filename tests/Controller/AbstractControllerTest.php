@@ -15,6 +15,7 @@ abstract class AbstractControllerTest extends WebTestCase {
     protected $client;
     /** @var  EntityManager $em */
     protected $em;
+    protected $crawler;
     protected $persistedFixtures = array();
 
     public function setUp() {
@@ -52,8 +53,8 @@ abstract class AbstractControllerTest extends WebTestCase {
         ];
     }
 
-    protected function submitForm($crawler, $buttonValue, $values) {
-        $form = $crawler->selectButton($buttonValue)->form();
+    protected function submitForm($buttonValue, $values) {
+        $form = $this->crawler->selectButton($buttonValue)->form();
         // set some values
         $form->setValues($values);
 

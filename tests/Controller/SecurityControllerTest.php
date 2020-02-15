@@ -33,10 +33,10 @@ class SecurityControllerTest extends AbstractControllerTest
     }
 
     public function testRegister() {
-        $crawler = $this->client->request('GET', '/register');
+        $this->crawler = $this->client->request('GET', '/register');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-        $this->submitForm($crawler, 'Créer', [
+        $this->submitForm('Créer', [
             'app_user[username]'=> 'test',
             'app_user[firstname]'=> 'test',
             'app_user[lastname]'=> 'toto',

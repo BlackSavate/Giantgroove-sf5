@@ -17,6 +17,8 @@ class SecurityController extends AbstractController
 {
     /**
      * @Route("/login", name="login", methods={"GET", "POST"})
+     * @param Request $request
+     * @param AuthenticationUtils $authenticationUtils
      * @return Response
      */
     public function login(Request $request, AuthenticationUtils $authenticationUtils)
@@ -36,7 +38,9 @@ class SecurityController extends AbstractController
     /**
      * @Route("/register", name="register", methods={"GET", "POST"})
      * @param Request $request
+     * @param UserPasswordEncoderInterface $encoder
      * @return Response
+     * @throws \Exception
      */
     public function register(Request $request, UserPasswordEncoderInterface $encoder)
     {
