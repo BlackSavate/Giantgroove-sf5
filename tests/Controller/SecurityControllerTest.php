@@ -24,7 +24,6 @@ class SecurityControllerTest extends AbstractControllerTest
         $this->client->request('POST', '/login', ['_username' => $user->getUsername(), '_password' => $user->getPassword()]);
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-        // TODO: test flashes
         $this->client->request('POST', '/login', ['_username' => 'fake_username', '_password' => $user->getPassword()]);
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
@@ -62,7 +61,8 @@ class SecurityControllerTest extends AbstractControllerTest
 
         $repo = $this->em->getRepository(User::class);
         $user = $repo->findOneBy(['username' => 'test']);
-        $this->assertNotNull($user);
         $this->addToPersistedFixtures($user);
+        $this->assertNotNull($user);
+        $this->assertEquals(['ROLE_USER'], $user->getRoles());
     }
 }
