@@ -2,7 +2,6 @@
 
 namespace App\Controller\Admin;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +13,7 @@ use App\Form\ProjectType;
 * @Route("/admin/project", name="admin_project_")
 * @IsGranted("ROLE_ADMIN")
 */
-class ProjectController extends AbstractController
+class ProjectController extends AdminBaseController
 {
     /**
      * @Route("/", name="list", methods={"GET"})

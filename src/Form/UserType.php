@@ -153,6 +153,7 @@ class UserType extends AbstractType
             ->add('avatar', FileType::class, [
                 'label' => 'Avatar',
                 'data_class' => null,
+                'required' => false
             ]);
     }
 

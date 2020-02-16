@@ -20,7 +20,7 @@ class AppFixtures extends Fixture
         $user->setUsername('sbelaud');
         $user->setFirstname('Simon');
         $user->setLastname('BELAUD');
-        $user->setSlug('simon-belaud');
+        $user->setSlug('sbelaud');
         $user->setPassword($this->passwordEncoder->encodePassword($user, 'DivFol42'));
         $user->setEmail('blacksavate@outlook.fr');
         $user->setAddress1('83 Route de l\'Ormeau');

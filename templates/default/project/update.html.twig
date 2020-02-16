@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ user.username }}{% endblock %}
+{% block title %}{{ project.title }}{% endblock %}
 
 {% block breadcrumb %}
 <a href="{{ path('homepage') }}">{{ 'home'|trans|capitalize }}</a> &gt;
-<a href="{{ path('user_detail', { 'slug': user.slug }) }}">{{ 'profile_of_user'|trans({'%username%': user.username})|capitalize }}</a> &gt;
+<a href="{{ path('project_list') }}">{{ 'projects'|trans|capitalize }}</a> &gt;
+<a href="{{ path('project_detail', { 'slug': project.slug }) }}">{{ project.title }}</a> &gt;
 <span class="bc-current">{{ 'edit'|trans|capitalize }}</span>
 {% endblock %}
 
@@ -12,6 +13,6 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
     <input class="button btn btn-secondary" type="submit" value="{{ 'validate'|trans|capitalize }}" />
-    <button type="button" name="button" class="btn btn-secondary"><a href="{{ path('user_detail', { 'slug': user.slug }) }}">{{ 'back'|trans|capitalize }}</a></button>
+    <button type="button" name="button" class="btn btn-secondary"><a href="{{ path('project_detail', { 'slug': project.slug }) }}">{{ 'back'|trans|capitalize }}</a></button>
 {{ form_end(form) }}
 {% endblock %}

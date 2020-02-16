@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +12,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
-class SecurityController extends AbstractController
+class SecurityController extends BaseController
 {
     /**
      * @Route("/login", name="login", methods={"GET", "POST"})
@@ -61,6 +60,15 @@ class SecurityController extends AbstractController
             $user->setIsActive(true);
             $encoded = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($encoded);
+            $avatar = $user->getAvatar();
+            if (null != $avatar) {
+                $fileName = $this->generateUniqueFileName().'.'.$avatar->guessExtension();
+                $avatar->move(
+                    $this->getParameter('avatar_directory'),
+                    $fileName
+                );
+                $user->setAvatar($fileName);
+            }
             $em->persist($user);
             $em->flush();
 

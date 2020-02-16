@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
-
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
@@ -256,6 +258,7 @@ class User implements UserInterface
         return $this;
     }
 
+
     public function getAvatar(): ?string
     {
         return $this->avatar;
@@ -264,7 +267,6 @@ class User implements UserInterface
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
-
         return $this;
     }
 
@@ -359,6 +361,4 @@ class User implements UserInterface
 
         return $this;
     }
-
-
 }

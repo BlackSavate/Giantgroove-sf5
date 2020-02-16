@@ -5,7 +5,6 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use App\Form\ProjectType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,7 +16,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
  * @IsGranted("IS_AUTHENTICATED_FULLY")
  * @return Response
  */
-class ProjectController extends AbstractController
+class ProjectController extends BaseController
 {
     /**
      * @Route("/", name="list", methods={"GET"})

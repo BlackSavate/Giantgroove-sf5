@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+  {{ parent() }}
+  {{ encore_entry_link_tags('profile') }}
+{% endblock %}
 {% block title %}{{ user.username }}{% endblock %}
 
 {% block breadcrumb %}
@@ -10,6 +14,11 @@
 {% block body %}
   <h1>{{ 'profile_of_user'|trans({'%username%': user.username})|capitalize }}</h1>
   <ul>
+    {% if  user.avatar %}
+      <li><img class="avatar" src="{{ asset('media/avatar/' ~ user.avatar) }}" alt="profile picture"></li>
+    {% else %}
+      <li><img class="avatar" src="{{ asset('media/avatar/default.png') }}" alt="profile picture"></li>
+    {% endif %}
     <li>{{ user.firstname }} {{ user.lastname }} ({{ user.email }})</li>
     <li>Né le {{ user.birthdate|date('d M Y') }}</li>
     <li>{{ user.address1 }}</li>
