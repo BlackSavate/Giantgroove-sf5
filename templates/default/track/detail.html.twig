@@ -11,16 +11,16 @@
 {% block body %}
   <div id="user-info" data-user="{% if is_granted('IS_AUTHENTICATED_FULLY') %}{{ app.user.slug }}{% endif %}"></div>
     {% if project.tracks is not empty %}
-      {% include 'default/project/studio.html.twig' %}
+      {% include 'project/studio.html.twig' %}
       <hr>
-      {% include 'default/project/mixing.html.twig' %}
+      {% include 'project/mixing.html.twig' %}
     {% else %}
       <h1 class="text-center">{{ project.title }}</h1>
 
       {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user == project.author %}
         <div class="row justify-content-center">
 {#        add demand #}
-          <a href="{{ path('track_create', {'project': project.id }) }}"><button class="btn btn-secondary" type="button" name="button">{{ 'add_track'|trans|capitalize }}</button></a>
+          <a href="{{ path('track_create', {'project': project.id }) }}"><button class="btn btn-secondary" type="button" name="button">Ajouter une piste</button></a>
 
 {#            delete project#}
 {#          {{ form_start(delete_form) }}#}
@@ -29,4 +29,6 @@
         </div>
       {% endif %}
     {% endif %}
+  <h1>{{ project.title|capitalize }}</h1>
+  <button type="button" name="button" class="btn btn-secondary"><a href="{{ path('project_update',{ 'slug': project.slug }) }}">{{ 'edit'|trans|capitalize }}</a></button>
 {% endblock %}

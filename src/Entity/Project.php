@@ -2,6 +2,7 @@
 
 
 namespace App\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,6 +41,16 @@ class Project
      * @ORM\ManyToOne(targetEntity="User", inversedBy="projects")
      */
     private $author;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Track", mappedBy="project")
+     */
+    private $tracks;
+
+    public function __construct()
+    {
+        $this->tracks = new ArrayCollection;
+    }
 
     public function getId(): ?int
     {
@@ -115,6 +126,42 @@ class Project
     {
         $this->author = $author;
 
+        return $this;
+    }
+
+    /**
+     * Get the value of Tracks
+     *
+     * @return mixed
+     */
+    public function getTracks()
+    {
+        return $this->tracks;
+    }
+
+    /**
+     * Set the value of Tracks
+     *
+     * @param Track track
+     *
+     * @return self
+     */
+    public function addTrack(Track $track)
+    {
+        $this->tracks[] = $track;
+        return $this;
+    }
+
+    /**
+     * Set the value of Tracks
+     *
+     * @param Track track
+     *
+     * @return self
+     */
+    public function removeTrack(Track $track)
+    {
+        $this->tracks->removeElement($track);
         return $this;
     }
 }

@@ -1,0 +1,12 @@
+@import "./variables.scss";
+
+#tracks {
+  tr {
+    &:nth-child(even) td {
+      background-color: lighten($bc-color, $super_ease);
+    }
+    td {
+      border: none;
+    }
+  }
+}

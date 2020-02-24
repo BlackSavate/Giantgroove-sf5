@@ -15,18 +15,21 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', null, [
-                'label' => 'Titre *',
+            ->add('title', null,
+            [
+                'label' => 'Titre',
                 'constraints' => [
-                    new Assert\NotBlank(),
-                    new Assert\Length([
-                        'min' => 3,
-                        'max' => 255,
-                        'minMessage' => 'Votre Titrer doit comporter au moins {{ limit }} caractères',
-                        'maxMessage' => 'Votre Titrer ne doit pas dépasser {{ limit }} caractères',
-                    ])
-                ],
-            ]);
+                    new Assert\NotBlank([
+                        'message' => 'Ce champs est obligatoire'
+                    ]),
+                ]
+            ])
+//            ->add('styles', null,
+//            [
+//                'label' => 'Styles',
+//                'expanded' => true
+//            ])
+        ;
     }
 
     /**

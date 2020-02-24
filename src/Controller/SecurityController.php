@@ -53,8 +53,7 @@ class SecurityController extends BaseController
 
             $currentDate = new \Datetime();
             $user = $form->getData();
-            $slugger = new AsciiSlugger();
-            $user->setSlug($slugger->slug($user->getUsername()));
+            $user->setSlug($this->slugger->slug($user->getUsername()));
             $user->setCreatedAt($currentDate);
             $user->setUpdatedAt($currentDate);
             $user->setIsActive(true);

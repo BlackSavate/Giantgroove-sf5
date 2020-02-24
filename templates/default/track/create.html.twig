@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'add_track'|trans|capitalize }}{% endblock %}
+
+{% block breadcrumb %}
+    <a href="{{ path('homepage') }}">{{ 'home'|trans|capitalize }}</a> &gt;
+    <a href="{{ path('project_list') }}">{{ 'projects'|trans|capitalize }}</a> &gt;
+    <a href="{{ path('project_detail', { 'slug': project.slug }) }}">{{ project.title }}</a> &gt;
+    <span class="bc-current">{{ 'add_track'|trans|capitalize }}</span>
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'add_track'|trans|capitalize }}</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="{{ 'add_track'|trans|capitalize }}" class="btn btn-secondary" />
+    {{ form_end(form) }}
+
+{% endblock %}

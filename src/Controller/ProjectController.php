@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Component\String\Slugger\AsciiSlugger;
 
 /**
  * @Route("/project", name="project_")
@@ -34,35 +33,31 @@ class ProjectController extends BaseController
 
     /**
      * @Route("/create", name="create", methods={"GET", "POST"})
+     * @param Request $request
      * @return Response
+     * @throws \Exception
      */
     public function create(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $project = new Project();
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $currentDate = new \Datetime();
-            $project = $form->getData();
-            $slugger = new AsciiSlugger();
-            $project->setSlug($slugger->slug($project->getTitle()));
-            $project->setAuthor($this->getUser());
-            $project->setCreatedAt($currentDate);
-            $project->setUpdatedAt($currentDate);
-
+            $em = $this->getDoctrine()->getManager();
             $em->persist($project);
+            $project->setSlug($this->slugger->slug($project->getTitle()));
+            $project->setCreatedAt(new \Datetime);
+            $project->setAuthor($this->getUser());
             $em->flush();
-
-            return $this->redirectToRoute('project_detail', ['slug' => $project->getSlug()]);
+            return $this->redirectToRoute('project_detail', array('slug' => $project->getSlug()));
         }
 
-        return $this->render('default/project/create.html.twig', [
+        return $this->render('default/project/create.html.twig', array(
+            'project' => $project,
             'form' => $form->createView()
-        ]);
+        ));
     }
 
     /**
@@ -87,6 +82,8 @@ class ProjectController extends BaseController
 
     /**
      * @Route("/{slug}/edit", name="update", methods={"GET", "POST"})
+     * @param string $slug
+     * @param Request $request
      * @return Response
      */
     public function update(string $slug, Request $request)

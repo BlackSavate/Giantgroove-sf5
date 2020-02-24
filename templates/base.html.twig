@@ -10,6 +10,9 @@
           {% if 'admin' in app.request.uri %}
             {{ encore_entry_link_tags('admin') }}
           {% endif %}
+{#        {% if 'project' in app.request.uri %}#}
+            {{ encore_entry_link_tags('project') }}
+{#        {% endif %}#}
           {{ encore_entry_link_tags('app') }}
         {% endblock stylesheets %}
     </head>
@@ -39,6 +42,7 @@
         {% endblock footer %}
         {% block javascripts %}
           {{ encore_entry_script_tags('app') }}
+          {{ encore_entry_script_tags('project') }}
         {% endblock javascripts %}
     </body>
 </html>
