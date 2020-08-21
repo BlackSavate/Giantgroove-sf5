@@ -25,6 +25,11 @@ class TrackType extends AbstractType
                         ])
                     ]
                 ])
+            ->add('isOpen', null,
+                [
+                    'label' => 'Ouvert aux contributions',
+                    'constraints' => []
+                ])
 //            ->add('sheet', FileType::class,
 //                [
 //                    'label' => 'Partition',

@@ -27,9 +27,19 @@ class Track
     private $slug;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isOpen;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Project", inversedBy="tracks")
      */
     private $project;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="tracks")
+     */
+    private $author;
 
     /**
      * @ORM\Column(type="datetime")
@@ -71,6 +81,18 @@ class Track
         return $this;
     }
 
+    public function getIsOpen(): ?string
+    {
+        return $this->isOpen;
+    }
+
+    public function setIsOpen(bool $isOpen): self
+    {
+        $this->isOpen = $isOpen;
+
+        return $this;
+    }
+
     /**
      * Get the value of Project
      *
@@ -91,6 +113,30 @@ class Track
     public function setProject($project)
     {
         $this->project = $project;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Author
+     *
+     * @return mixed
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set the value of Author
+     *
+     * @param mixed author
+     *
+     * @return Track
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
 
         return $this;
     }

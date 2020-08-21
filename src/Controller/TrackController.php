@@ -37,6 +37,7 @@ class TrackController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($track);
+            $user = $this->getUser();
 //            $audio = $track->getAudio();
 //            if (null != $audio) {
 //                $fileName = $this->generateUniqueFileName().'.'.$audio->guessExtension();
@@ -48,6 +49,7 @@ class TrackController extends BaseController
 //            }
             $track->setSlug($this->slugger->slug($track->getName()));
             $track->setProject($project);
+            $track->setAuthor($user);
             $track->setCreatedAt(new \DateTime());
             $em->flush();
 

@@ -5,12 +5,15 @@ add_track: ajouter une piste
 author: auteur
 back: retour
 band: groupe
+contribute: contribuer
+contribution: ~
 create: créer
 dashboard: tableau de bord
 delete: supprimer
 disable: désactiver
 edit: modifier
 home: accueil
+instrument: ~
 link: lien
 login: connexion
 logout: déconnexion
@@ -30,7 +33,11 @@ projects: projets
 random: aléatoire
 register: inscription
 required_fields: les champs marqués d'une * sont obligatoires
+rate: note
 roles: ~
+select_contribution: sélectionnez une contribution
+sheet: partition
+track: piste
 unable: activer
 user: utilisateur
 username: nom d'utilisateur

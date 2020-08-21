@@ -76,7 +76,8 @@ class ProjectController extends BaseController
         }
 
         return $this->render('default/project/detail.html.twig', [
-            'project' => $project
+            'project' => $project,
+            'tracks' => $project->getTracks()
         ]);
     }
 

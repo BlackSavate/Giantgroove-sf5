@@ -3,30 +3,30 @@
 {% block title %}{{ project.title }}{% endblock %}
 
 {% block breadcrumb %}
-<a href="{{ path('homepage') }}">{{ 'home'|trans|capitalize }}</a> &gt;
-<a href="{{ path('project_list') }}">{{ 'projects'|trans|capitalize }}</a> &gt;
-<span class="bc-current">{{ project.title|capitalize }}</span>
+    <a href="{{ path('homepage') }}">{{ 'home'|trans|capitalize }}</a> &gt;
+    <a href="{{ path('project_list') }}">{{ 'projects'|trans|capitalize }}</a> &gt;
+    <span class="bc-current">{{ project.title|capitalize }}</span>
 {% endblock %}
 
 {% block body %}
-  <div id="user-info" data-user="{% if is_granted('IS_AUTHENTICATED_FULLY') %}{{ app.user.slug }}{% endif %}"></div>
+    <div id="user-info" data-user="{% if is_granted('IS_AUTHENTICATED_FULLY') %}{{ app.user.slug }}{% endif %}"></div>
     {% if project.tracks is not empty %}
-      {% include 'default/project/studio.html.twig' %}
-      <hr>
-      {% include 'default/project/mixing.html.twig' %}
+        {% include 'default/project/studio.html.twig' %}
+        <hr>
+        {% include 'default/project/mixing.html.twig' %}
     {% else %}
-      <h1 class="text-center">{{ project.title }}</h1>
+        <h1 class="text-center">{{ project.title }}</h1>
 
-      {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user == project.author %}
-        <div class="row justify-content-center">
-{#        add demand #}
-          <a href="{{ path('track_create', {'project': project.id }) }}"><button class="btn btn-secondary" type="button" name="button">{{ 'add_track'|trans|capitalize }}</button></a>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user == project.author %}
+            <div class="row justify-content-center">
+                {#        add demand #}
+                <a href="{{ path('track_create', {'project': project.id }) }}"><button class="btn btn-secondary" type="button" name="button">{{ 'add_track'|trans|capitalize }}</button></a>
 
-{#            delete project#}
-{#          {{ form_start(delete_form) }}#}
-{#          <button class="button button-red" type="submit" name="button"><i class="fas fa-trash-alt" title="Supprimer"></i> Supprimer</button>#}
-{#          {{ form_end(delete_form) }}#}
-        </div>
-      {% endif %}
+                {#            delete project#}
+                {#          {{ form_start(delete_form) }}#}
+                {#          <button class="button button-red" type="submit" name="button"><i class="fas fa-trash-alt" title="Supprimer"></i> Supprimer</button>#}
+                {#          {{ form_end(delete_form) }}#}
+            </div>
+        {% endif %}
     {% endif %}
 {% endblock %}

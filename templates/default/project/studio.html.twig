@@ -1,1 +1,52 @@
 <h1>studio</h1>
+{% if is_granted('IS_AUTHENTICATED_FULLY') and app.user.id == project.author.id %}
+    <a href="{{ path('track_create', {'project': project.id}) }}" class="btn btn-secondary">{{ 'add_track'|trans|capitalize }}</a>
+{% endif %}
+
+<table class="table table-hover table-striped table-dark">
+    <thead>
+        <tr>
+            <th scope="col">{{ 'track'|trans|capitalize }}</th>
+            <th scope="col">{{ 'instrument'|trans|capitalize }}</th>
+            <th scope="col">{{ 'contribution'|trans|capitalize }}</th>
+            <th scope="col">{{ 'sheet'|trans|capitalize }}</th>
+            <th scope="col">{{ 'author'|trans|capitalize }}</th>
+            <th scope="col">{{ 'contribute'|trans|capitalize }}</th>
+            <th scope="col">{{ 'rate'|trans|capitalize }}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for track in tracks  %}
+        <tr>
+            <td scope="row">
+                {{ track.name }}
+            </td>
+            <td>
+
+            </td>
+            <td>
+                {% if track.isOpen %}
+                    <select name="contributions" id="contributions">
+                        <option>{{ 'select_contribution'|trans|capitalize }}</option>
+                    </select>
+                {% else %}
+                    <p>Verouillé</p>
+                {% endif %}
+
+            </td>
+            <td>
+
+            </td>
+            <td>
+                <a href="{{ path('user_detail', {'slug': track.author.slug}) }}">{{ track.author.username }}</a>
+            </td>
+            <td>
+                <input type="file" value="">
+            </td>
+            <td>
+
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

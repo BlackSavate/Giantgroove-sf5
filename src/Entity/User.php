@@ -109,6 +109,11 @@ class User implements UserInterface
      */
     private $projects;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Track", mappedBy="author")
+     */
+    private $tracks;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -358,6 +363,30 @@ class User implements UserInterface
     public function setProjects($projects)
     {
         $this->projects = $projects;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Tracks
+     *
+     * @return mixed
+     */
+    public function getTracks()
+    {
+        return $this->tracks;
+    }
+
+    /**
+     * Set the value of Tracks
+     *
+     * @param mixed tracks
+     *
+     * @return User
+     */
+    public function setTracks($tracks)
+    {
+        $this->tracks = $tracks;
 
         return $this;
     }

@@ -5,12 +5,15 @@ add_track: add track
 author: ~
 back: ~
 band: ~
+contribute: ~
+contribution: ~
 create: ~
 dashboard: ~
 delete: ~
 disable: ~
 edit: ~
 home: ~
+instrument: ~
 link: ~
 login: ~
 logout: ~
@@ -28,9 +31,13 @@ profile_of_user: profile of %username%
 project: ~
 projects: ~
 random: ~
+rate: ~
 register: ~
 required_fields: fields marked with a * are required
 roles: ~
+select_contribution: select a contribution
+sheet: ~
+track: ~
 unable: ~
 user: ~
 username: ~
