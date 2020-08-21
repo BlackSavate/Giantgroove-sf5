@@ -41,7 +41,11 @@
                 <a href="{{ path('user_detail', {'slug': track.author.slug}) }}">{{ track.author.username }}</a>
             </td>
             <td>
-                <input type="file" value="">
+                {% if track.isOpen %}
+                    <input type="file" value="">
+                {% else %}
+                    <p>Verouillé</p>
+                {% endif %}
             </td>
             <td>
 

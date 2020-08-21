@@ -40,11 +40,11 @@ class TrackType extends AbstractType
 //                    'label' => 'Instruments',
 //                    'expanded' => true,
 //                ])
-//            ->add('audio', FileType::class,
-//                [
-//                    'label' => 'Audio',
-//                    'data_class' => null,
-//                ])
+            ->add('audio', FileType::class,
+                [
+                    'label' => 'Audio',
+                    'data_class' => null,
+                ])
         ;
     }
 

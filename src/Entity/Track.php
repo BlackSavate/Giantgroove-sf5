@@ -3,6 +3,7 @@
 
 namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TrackRepository")
@@ -30,6 +31,17 @@ class Track
      * @ORM\Column(type="boolean")
      */
     private $isOpen;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="audio", type="string", length=255, nullable=true)
+     * @Assert\File(
+     *    mimeTypes={ "audio/*" },
+     *    mimeTypesMessage="Veuillez choisir un fichier dans un format audio valide.",
+     *    maxSize="30M")
+     */
+    private $audio;
 
     /**
      * @ORM\ManyToOne(targetEntity="Project", inversedBy="tracks")
@@ -91,6 +103,30 @@ class Track
         $this->isOpen = $isOpen;
 
         return $this;
+    }
+
+    /**
+     * Set audio
+     *
+     * @param string $audio
+     *
+     * @return Track
+     */
+    public function setAudio($audio)
+    {
+        $this->audio = $audio;
+
+        return $this;
+    }
+
+    /**
+     * Get audio
+     *
+     * @return string
+     */
+    public function getAudio()
+    {
+        return $this->audio;
     }
 
     /**

@@ -38,15 +38,15 @@ class TrackController extends BaseController
             $em = $this->getDoctrine()->getManager();
             $em->persist($track);
             $user = $this->getUser();
-//            $audio = $track->getAudio();
-//            if (null != $audio) {
-//                $fileName = $this->generateUniqueFileName().'.'.$audio->guessExtension();
-//                $audio->move(
-//                    $this->getParameter('project_audio_directory'),
-//                    $fileName
-//                );
-//                $track->setAudio($fileName);
-//            }
+            $audio = $track->getAudio();
+            if (null != $audio) {
+                $fileName = $this->generateUniqueFileName().'.'.$audio->guessExtension();
+                $audio->move(
+                    $this->getParameter('project_audio_directory').'/'.$project->getId().'-'.$project->getSlug(),
+                    $fileName
+                );
+                $track->setAudio($fileName);
+            }
             $track->setSlug($this->slugger->slug($track->getName()));
             $track->setProject($project);
             $track->setAuthor($user);

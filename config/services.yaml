@@ -6,6 +6,7 @@
 parameters:
     locale: '%env(APP_LOCALE)%'
     image_directory: '%kernel.project_dir%/public/media/avatar'
+    project_audio_directory: '%kernel.project_dir%/public/audio'
 
 services:
     # default configuration for services in *this* file
