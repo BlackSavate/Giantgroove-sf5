@@ -48,3 +48,8 @@ input {
   color: $color;
   border: 2px inset lighten($bc-color, $ease);
 }
+
+.iconify {
+  width: 25px;
+  height: 25px;
+}

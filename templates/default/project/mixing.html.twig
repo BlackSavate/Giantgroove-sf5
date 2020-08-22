@@ -1,1 +1,15 @@
 <h1>mixing</h1>
+<span id="play" class="iconify" data-icon="fa-solid:play-circle" data-inline="false"></span>
+<span id="pause" class="iconify" data-icon="fa-solid:pause-circle" data-inline="false" style="display: none"></span>
+
+<table>
+{% for track in tracks %}
+    <tr>
+        <td>
+            {{ track.name }}
+        </td>
+        <td></td>
+        <td>{{ track.start }}</td>
+    </tr>
+{% endfor %}
+</table>

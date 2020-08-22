@@ -30,6 +30,7 @@ Encore
     .addEntry('admin', './assets/css/admin.scss')
     .addEntry('profile', './assets/css/profile.scss')
     .addEntry('project', './assets/js/project.js')
+    .addEntry('mixing', './assets/js/mixing.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

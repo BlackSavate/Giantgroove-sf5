@@ -6,9 +6,11 @@ namespace App\Controller;
 use App\Entity\Project;
 use App\Entity\Track;
 use App\Form\TrackType;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -62,4 +64,19 @@ class TrackController extends BaseController
             'form' => $form->createView(),
         ));
     }
+
+    /**
+     * Deletes a track entity.
+     *
+     * @Route("/{track}", name="delete")
+     * @Method("DELETE")
+     */
+    public function delete(Request $request, Track $track)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($track);
+        $em->flush();
+        return $this->redirectToRoute('project_detail', array('slug' => $track->getProject()->getSlug()));
+    }
+
 }

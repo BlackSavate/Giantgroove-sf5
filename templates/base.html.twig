@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock title %}</title>
+        <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
         {% block stylesheets %}
           {{ encore_entry_link_tags('reset') }}
           {{ encore_entry_link_tags('normalize') }}
@@ -17,6 +18,7 @@
         {% endblock stylesheets %}
     </head>
     <body class="container">
+        {% set is_connected = is_granted('IS_AUTHENTICATED_FULLY') %}
         {{ include('parts/menu.html.twig') }}
         <div id="breadcrumb" class="mb-2">{% block breadcrumb %}{% endblock %}</div>
         {% block flash_message %}
@@ -43,6 +45,7 @@
         {% block javascripts %}
           {{ encore_entry_script_tags('app') }}
           {{ encore_entry_script_tags('project') }}
+          {{ encore_entry_script_tags('mixing') }}
         {% endblock javascripts %}
     </body>
 </html>

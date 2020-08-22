@@ -1,9 +1,9 @@
 <h1>studio</h1>
-{% if is_granted('IS_AUTHENTICATED_FULLY') and app.user.id == project.author.id %}
+{% if app.user.id == project.author.id %}
     <a href="{{ path('track_create', {'project': project.id}) }}" class="btn btn-secondary">{{ 'add_track'|trans|capitalize }}</a>
 {% endif %}
 
-<table class="table table-hover table-striped table-dark">
+<table class="table table-dark">
     <thead>
         <tr>
             <th scope="col">{{ 'track'|trans|capitalize }}</th>
@@ -13,44 +13,68 @@
             <th scope="col">{{ 'author'|trans|capitalize }}</th>
             <th scope="col">{{ 'contribute'|trans|capitalize }}</th>
             <th scope="col">{{ 'rate'|trans|capitalize }}</th>
+            <th scope="col">{{ 'action'|trans|capitalize }}</th>
         </tr>
     </thead>
     <tbody>
     {% for track in tracks  %}
-        <tr>
+        <tr class="track" data-audio="{{ track.audio }}">
+            {#  Track #}
             <td scope="row">
                 {{ track.name }}
             </td>
+            {# Instrument #}
             <td>
-
+                <img src="https://via.placeholder.com/25"/>
             </td>
+            {# Contribution #}
             <td>
                 {% if track.isOpen %}
                     <select name="contributions" id="contributions">
                         <option>{{ 'select_contribution'|trans|capitalize }}</option>
                     </select>
                 {% else %}
-                    <p>Verouillé</p>
+                    <span class="iconify" data-icon="dashicons:lock" data-inline="false"></span>
                 {% endif %}
 
             </td>
+            {# Music sheet #}
             <td>
-
+                <span class="iconify" data-icon="dashicons:media-audio" data-inline="false"></span>
+                <span class="iconify" data-icon="mdi:file-upload" data-inline="false"></span>
             </td>
+            {# Author #}
             <td>
                 <a href="{{ path('user_detail', {'slug': track.author.slug}) }}">{{ track.author.username }}</a>
             </td>
+            {# Contribute #}
             <td>
                 {% if track.isOpen %}
-                    <input type="file" value="">
+                    <label for="file-{{ track.id }}">
+                        <span class="iconify" data-icon="si-glyph:disc-upload" data-inline="false"></span>
+                        <input type="file" id="file-{{ track.id }}" style="display: none" name="" accept="">
+                    </label>
                 {% else %}
-                    <p>Verouillé</p>
+                    <span class="iconify" data-icon="dashicons:lock" data-inline="false"></span>
                 {% endif %}
             </td>
+            {# Rate #}
             <td>
 
             </td>
+            <td>
+                {% if app.user == project.author %}
+                    <a href="#" ><span class="iconify" data-icon="dashicons:edit" data-inline="false"></span></a>
+                    <form action="{{ path('track_delete', {'project': project.id, 'track': track.id }) }}" method="DELETE">
+                        <label for="delete-track-{{ track.id }}">
+                            <span class="iconify" data-icon="ic:round-delete-forever" data-inline="false"></span>
+                            <input type="submit" id="delete-track-{{ track.id }}" style="display: none" name="" />
+                        </label>
+                    </form>
+                {% endif %}
+            </td>
         </tr>
+        <audio src="{{asset("/audio/") }}{{ track.project.id }}-{{ track.project.slug }}/{{ track.audio }}"></audio>
     {% endfor %}
     </tbody>
 </table>
