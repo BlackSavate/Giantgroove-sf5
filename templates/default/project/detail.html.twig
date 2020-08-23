@@ -2,6 +2,11 @@
 
 {% block title %}{{ project.title }}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('mixing') }}
+{% endblock %}
+
 {% block breadcrumb %}
     <a href="{{ path('homepage') }}">{{ 'home'|trans|capitalize }}</a> &gt;
     <a href="{{ path('project_list') }}">{{ 'projects'|trans|capitalize }}</a> &gt;

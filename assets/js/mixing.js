@@ -1,48 +1,66 @@
 const $ = require('jquery');
+import '../css/mixing.scss';
 
 var mixingApp = {
-    init: function() {
-        mixingApp.loadAudioContext();
-        $('#play').on('click', mixingApp.play)
+    audioContext: new (window.AudioContext || window.webkitAudioContext)(),
+    sources: [],
+    originalSVG: {
+        'play': $('#play').children('path').attr('d'),
+        'pause': $('#pause').children('path').attr('d'),
     },
-    loadAudioContext: function(evt) {
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    init: function() {
+        $('#play').on('click', mixingApp.play);
+        $('#pause').on('click', mixingApp.pause);
     },
     loadTrack: function (audio, start) {
             window.fetch(audio)
             .then(response => response.arrayBuffer())
-            .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+            .then(arrayBuffer => mixingApp.audioContext.decodeAudioData(arrayBuffer))
             .then(audioBuffer => {
-                audioSource = audioBuffer;
-                source = audioContext.createBufferSource();
+                var source = mixingApp.audioContext.createBufferSource();
                 source.buffer = audioBuffer;
                 source.startTime = start;
-                source.connect(audioContext.destination);
-                sources.push(source);
+                source.connect(mixingApp.audioContext.destination);
+                mixingApp.sources.push(source);
             })
     },
-    play: function(evt) {
-        // TODO: détecter le status de la lecture
-        // if playing -> pause
-
-        // if suspended -> resume
-
-        // if stopped -> play
-        $('#play').children('path').attr('d', $('#pause').children('path').attr('d'));
-        sources = [];
+    play: function() {
+        $('#play').hide();
+        $('#pause').show().focus();
+        $('#stop').removeClass('disabled');
+        mixingApp.sources = [];
         var trackList = $('tr[data-audio]');
         trackList.each(function () {
             mixingApp.loadTrack('http://127.0.0.1:8000/' + $(this).data('audio'), $(this).data('start'))
         });
         var waitLoading = setInterval(function(){
-            if(sources.length === trackList.length) {
-                $(sources).each(function(track){
-                    var startTime = sources[track].startTime;
-                    sources[track].start(startTime);
+            if(mixingApp.sources.length === trackList.length) {
+                $(mixingApp.sources).each(function(track){
+                    var startTime = mixingApp.sources[track].startTime;
+                    mixingApp.sources[track].start(startTime);
                     clearInterval(waitLoading);
                 })
             }
         }, 300);
+    },
+    pause: function() {
+        // TODO: détecter le status de la lecture
+        // if playing -> pause
+        if(mixingApp.audioContext.state === 'running') {
+            mixingApp.audioContext.suspend();
+            $('#pause').children('path').attr('d', mixingApp.originalSVG.play);
+        }
+        // if suspended -> resume
+        else if (mixingApp.audioContext.state === 'suspended') {
+            mixingApp.audioContext.resume();
+            $('#pause').children('path').attr('d', mixingApp.originalSVG.pause);
+        }
+        else {
+            console.log('ERROR')
+        }
+    },
+    onEnd: function(evt) {
+
     },
 };
 
