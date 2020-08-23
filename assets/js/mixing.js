@@ -8,25 +8,7 @@ var mixingApp = {
     loadAudioContext: function(evt) {
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
     },
-    // loadTrack: function(audio) {
-    //     window.fetch(audio)
-    //         .then(response => response.arrayBuffer())
-    //         .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
-    //         .then(audioBuffer => {
-    //             yodelBuffer = audioBuffer;
-    //         });
-    //
-    //     var playButton = $('#play');
-    //     playButton.onclick = () => mixingApp.play(yodelBuffer);
-    // },
-    // play: function(audioBuffer) {
-    //     const source = audioContext.createBufferSource();
-    //     source.buffer = audioBuffer;
-    //     source.connect(audioContext.destination);
-    //     source.start();
-    // }
-    loadTrack: function (audio) {
-        console.log(audio)
+    loadTrack: function (audio, start) {
             window.fetch(audio)
             .then(response => response.arrayBuffer())
             .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
@@ -34,7 +16,7 @@ var mixingApp = {
                 audioSource = audioBuffer;
                 source = audioContext.createBufferSource();
                 source.buffer = audioBuffer;
-                source.startTime = 5;
+                source.startTime = start;
                 source.connect(audioContext.destination);
                 sources.push(source);
             })
@@ -42,20 +24,22 @@ var mixingApp = {
     play: function(evt) {
         // TODO: détecter le status de la lecture
         // if playing -> pause
-        
+
         // if suspended -> resume
 
         // if stopped -> play
         $('#play').children('path').attr('d', $('#pause').children('path').attr('d'));
         sources = [];
-        var trackList = $('audio');
+        var trackList = $('tr[data-audio]');
+        console.log(trackList)
         trackList.each(function () {
-            mixingApp.loadTrack('http://127.0.0.1:8000/' + $(this).attr('src'))
+            mixingApp.loadTrack('http://127.0.0.1:8000/' + $(this).data('audio'), $(this).data('start'))
         });
         var waitLoading = setInterval(function(){
-            if(sources.length == trackList.length) {
+            if(sources.length === trackList.length) {
                 $(sources).each(function(track){
                     var startTime = sources[track].startTime;
+                    console.log(startTime)
                     sources[track].start(startTime);
                     clearInterval(waitLoading);
                 })

@@ -1,15 +1,35 @@
 <h1>mixing</h1>
+<div id="control-panel">
 <span id="play" class="iconify" data-icon="fa-solid:play-circle" data-inline="false"></span>
 <span id="pause" class="iconify" data-icon="fa-solid:pause-circle" data-inline="false" style="display: none"></span>
+</div>
 
-<table>
+<table class="table table-dark">
+    <tr>
+        <th>Name</th>
+        <th>Color</th>
+        <th>Start time</th>
+        <th>Volume</th>
+    </tr>
 {% for track in tracks %}
     <tr>
         <td>
             {{ track.name }}
         </td>
-        <td></td>
-        <td>{{ track.start }}</td>
+        <td>
+            <input type="color" value="#ffffff"/>
+        </td>
+        <td><input type="number" step="0.001" value="{{ track.startTime }}"/></td>
+        <td><input class="volumeBar" type="range"  max="100" name="" value="50"></td>
+    </tr>
+{% endfor %}
+</table>
+<table class="table table-dark">
+{% for track in tracks %}
+    <tr>
+        <td style="padding:0">
+            <span style="display:inline-block;background-color:white;width:100%;height:1px; opacity:50%;vertical-align: middle;"></span>
+        </td>
     </tr>
 {% endfor %}
 </table>

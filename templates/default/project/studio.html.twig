@@ -18,7 +18,7 @@
     </thead>
     <tbody>
     {% for track in tracks  %}
-        <tr class="track" data-audio="{{ track.audio }}">
+        <tr class="track" data-audio="{{asset("/audio/") }}{{ track.project.id }}-{{ track.project.slug }}/{{ track.audio }}" data-start="{{ track.startTime }}" >
             {#  Track #}
             <td scope="row">
                 {{ track.name }}
@@ -74,7 +74,7 @@
                 {% endif %}
             </td>
         </tr>
-        <audio src="{{asset("/audio/") }}{{ track.project.id }}-{{ track.project.slug }}/{{ track.audio }}"></audio>
+{#        <audio src="{{asset("/audio/") }}{{ track.project.id }}-{{ track.project.slug }}/{{ track.audio }}"></audio>#}
     {% endfor %}
     </tbody>
 </table>

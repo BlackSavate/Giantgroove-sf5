@@ -44,6 +44,11 @@ class Track
     private $audio;
 
     /**
+     * @ORM\Column(type="float")
+     */
+    private $startTime;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Project", inversedBy="tracks")
      */
     private $project;
@@ -127,6 +132,30 @@ class Track
     public function getAudio()
     {
         return $this->audio;
+    }
+
+    /**
+     * Set startTime
+     *
+     * @param float $startTime
+     *
+     * @return Track
+     */
+    public function setStartTime($startTime)
+    {
+        $this->startTime = $startTime;
+
+        return $this;
+    }
+
+    /**
+     * Get startTime
+     *
+     * @return float
+     */
+    public function getStartTime()
+    {
+        return $this->startTime;
     }
 
     /**

@@ -23,3 +23,7 @@ yarn-error.log
 ###> liip/imagine-bundle ###
 /public/media/cache/
 ###< liip/imagine-bundle ###
+
+###> project_audio_directory ###
+/public/audio/
+###< project_audio_directory ###
