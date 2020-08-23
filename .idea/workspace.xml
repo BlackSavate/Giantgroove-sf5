@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1d60bf2-4992-445c-937c-abb2a52485b0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/css/mixing.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/mixing.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/mixing.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/default/project/detail.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/default/project/detail.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/default/project/mixing.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/default/project/mixing.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,8 +35,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/default/project/mixing.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+            <state relative-caret-position="85">
+              <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -46,8 +44,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/mixing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="52" column="79" lean-forward="true" selection-start-line="52" selection-start-column="79" selection-end-line="52" selection-end-column="79" />
+            <state relative-caret-position="52">
+              <caret line="52" column="90" selection-start-line="52" selection-start-column="90" selection-end-line="52" selection-end-column="90" />
             </state>
           </provider>
         </entry>
@@ -145,8 +143,8 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/templates/default/project/detail.html.twig" />
-        <option value="$PROJECT_DIR$/templates/default/project/mixing.html.twig" />
         <option value="$PROJECT_DIR$/assets/css/mixing.scss" />
+        <option value="$PROJECT_DIR$/templates/default/project/mixing.html.twig" />
         <option value="$PROJECT_DIR$/assets/js/mixing.js" />
       </list>
     </option>
@@ -488,7 +486,7 @@
       <workItem from="1582462264573" duration="11600000" />
       <workItem from="1598027508190" duration="1665000" />
       <workItem from="1598037811592" duration="32753000" />
-      <workItem from="1598132994132" duration="12719000" />
+      <workItem from="1598132994132" duration="18367000" />
     </task>
     <task id="LOCAL-00001" summary="config translation, phpstorm, phpunit, flash_messages, fixtures">
       <created>1576433779674</created>
@@ -602,7 +600,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598141457706</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="pause button">
+      <created>1598179704389</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1598179704389</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -638,7 +643,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137378000" />
+    <option name="totallyTimeSpent" value="143026000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -650,8 +655,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20895523" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -666,7 +670,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32917964" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.31152648" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3136033" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="PHP-CGI Server" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -691,7 +695,8 @@
     <MESSAGE value="track audio file" />
     <MESSAGE value="play multi track :D" />
     <MESSAGE value="start time" />
-    <option name="LAST_COMMIT_MESSAGE" value="start time" />
+    <MESSAGE value="pause button" />
+    <option name="LAST_COMMIT_MESSAGE" value="pause button" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Repository/TrackRepository.php">
@@ -1023,6 +1028,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/default/project/mixing.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/mixing.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1030,17 +1042,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/default/project/mixing.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/mixing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="52" column="79" lean-forward="true" selection-start-line="52" selection-start-column="79" selection-end-line="52" selection-end-column="79" />
+        <state relative-caret-position="52">
+          <caret line="52" column="90" selection-start-line="52" selection-start-column="90" selection-end-line="52" selection-end-column="90" />
         </state>
       </provider>
     </entry>
