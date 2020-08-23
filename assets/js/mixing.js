@@ -31,7 +31,6 @@ var mixingApp = {
         $('#play').children('path').attr('d', $('#pause').children('path').attr('d'));
         sources = [];
         var trackList = $('tr[data-audio]');
-        console.log(trackList)
         trackList.each(function () {
             mixingApp.loadTrack('http://127.0.0.1:8000/' + $(this).data('audio'), $(this).data('start'))
         });
@@ -39,7 +38,6 @@ var mixingApp = {
             if(sources.length === trackList.length) {
                 $(sources).each(function(track){
                     var startTime = sources[track].startTime;
-                    console.log(startTime)
                     sources[track].start(startTime);
                     clearInterval(waitLoading);
                 })
