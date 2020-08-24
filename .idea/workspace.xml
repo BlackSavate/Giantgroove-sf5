@@ -36,7 +36,7 @@
         <entry file="file://$PROJECT_DIR$/templates/default/project/mixing.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
-              <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+              <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -44,8 +44,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/mixing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="52" column="90" selection-start-line="52" selection-start-column="90" selection-end-line="52" selection-end-column="90" />
+            <state relative-caret-position="358">
+              <caret line="97" column="25" selection-start-line="97" selection-start-column="25" selection-end-line="97" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -486,7 +486,7 @@
       <workItem from="1582462264573" duration="11600000" />
       <workItem from="1598027508190" duration="1665000" />
       <workItem from="1598037811592" duration="32753000" />
-      <workItem from="1598132994132" duration="18367000" />
+      <workItem from="1598132994132" duration="22927000" />
     </task>
     <task id="LOCAL-00001" summary="config translation, phpstorm, phpunit, flash_messages, fixtures">
       <created>1576433779674</created>
@@ -607,7 +607,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598179704389</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="fix startTime">
+      <created>1598201290302</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1598201290302</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -643,7 +650,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143026000" />
+    <option name="totallyTimeSpent" value="147586000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -696,7 +703,8 @@
     <MESSAGE value="play multi track :D" />
     <MESSAGE value="start time" />
     <MESSAGE value="pause button" />
-    <option name="LAST_COMMIT_MESSAGE" value="pause button" />
+    <MESSAGE value="fix startTime" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix startTime" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Repository/TrackRepository.php">
@@ -1028,13 +1036,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/default/project/mixing.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/mixing.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1042,10 +1043,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/default/project/mixing.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/mixing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="52" column="90" selection-start-line="52" selection-start-column="90" selection-end-line="52" selection-end-column="90" />
+        <state relative-caret-position="358">
+          <caret line="97" column="25" selection-start-line="97" selection-start-column="25" selection-end-line="97" selection-end-column="43" />
         </state>
       </provider>
     </entry>

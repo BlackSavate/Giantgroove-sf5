@@ -12,6 +12,7 @@ var mixingApp = {
     init: function() {
         $('#play').on('click', mixingApp.play);
         $('#pause').on('click', mixingApp.pause);
+        $('#stop').on('click', mixingApp.stop);
     },
     getTrackListData: function(data) {
         var trackList = $('tr[data-audio]');
@@ -48,18 +49,22 @@ var mixingApp = {
         });
         var waitLoading = setInterval(function(){
             if(mixingApp.sources.length === trackList.length) {
+                var totalTime = [];
                 $(mixingApp.sources).each(function(track){
+                console.log(mixingApp.sources[track]);
                     var startTime = mixingApp.sources[track].startTime;
+                    totalTime.push(mixingApp.sources[track].buffer.duration + startTime);
                     mixingApp.sources[track].start(startTime + mixingApp.audioContextStart);
                     clearInterval(waitLoading);
                 })
+                mixingApp.totalTime = Math.max(...totalTime);
+                $('#totalTime').html(mixingApp.secondsToDhms(mixingApp.totalTime));
             }
         }, 300);
         mixingApp.audioContextStart = mixingApp.audioContext.currentTime;
         mixingApp.updateCurrentTime();
     },
     pause: function() {
-        console.log(mixingApp.getTrackListData('audio'))
         if(mixingApp.audioContext.state === 'running') {
             mixingApp.audioContext.suspend();
             $('#pause').children('path').attr('d', mixingApp.originalSVG.play);
@@ -72,14 +77,47 @@ var mixingApp = {
             console.log('ERROR')
         }
     },
+    stop: function() {
+        $(mixingApp.sources).each(function(track){
+            if(mixingApp.audioContext.state === 'suspended') {
+                mixingApp.audioContext.resume()
+            }
+            mixingApp.sources[track].stop();
+        });
+        mixingApp.stopTimer();
+        $('#pause').children('path').attr('d', mixingApp.originalSVG.play);
+        $('#currentTime').html('00:00:00');
+        $('#stop').addClass('disabled');
+        $('#play').show().focus();
+        $('#pause').hide();
+        $('#pause').children('path').attr('d', mixingApp.originalSVG.pause);
+    },
     onEnd: function(evt) {
-
+        if((evt.target.buffer.duration + evt.target.startTime) == mixingApp.totalTime) {
+            mixingApp.stop();
+        }
     },
     updateCurrentTime: function () {
-        var currentTimeInterval = setInterval(function(){
+        mixingApp.currentTimeInterval = setInterval(function(){
             mixingApp.currentTime =  mixingApp.audioContext.currentTime - mixingApp.audioContextStart;
-            $('#currentTime').html(Math.round(mixingApp.currentTime))
+            var seconds = Math.round(mixingApp.currentTime)
+            var currentTimeFormated = mixingApp.secondsToDhms(seconds)
+            $('#currentTime').html(currentTimeFormated)
         }, 1000);
+    },
+    secondsToDhms: function (seconds) {
+        seconds = Number(seconds);
+        var h = Math.floor(seconds % (3600*24) / 3600);
+        var m = Math.floor(seconds % 3600 / 60);
+        var s = Math.floor(seconds % 60);
+
+        var hDisplay = h < 10 ? '0'+ h : h;
+        var mDisplay = m < 10 ? '0'+ m : m;
+        var sDisplay = s < 10 ? '0'+ s : s;
+        return hDisplay + ':' + mDisplay + ':' + sDisplay;
+    },
+    stopTimer: function() {
+        clearInterval(mixingApp.currentTimeInterval);
     }
 };
 
