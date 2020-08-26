@@ -1,17 +1,19 @@
 <h1>mixing</h1>
 <div id="control-panel">
-<button id="play" class="iconify" data-icon="fa-solid:play-circle" data-inline="false"></button>
-<button id="pause" class="iconify" data-icon="fa-solid:pause-circle" data-inline="false" style="display: none"></button>
-<button id="stop" class="iconify disabled" data-icon="fa-solid:stop-circle" data-inline="false"></button>
-<span id="currentTime">00:00:00</span>/<span id="totalTime">00:00:00</span>
+    <button id="play" class="iconify" data-icon="fa-solid:play-circle" data-inline="false"></button>
+    <button id="pause" class="iconify" data-icon="fa-solid:pause-circle" data-inline="false" style="display: none"></button>
+    <button id="stop" class="iconify disabled" data-icon="fa-solid:stop-circle" data-inline="false"></button>
+{#    <button id="volumePlus" class="iconify" data-icon="fa-solid:plus-circle" data-inline="false"></button>#}
+    <span id="currentTime">00:00:00</span>/<span id="totalTime">00:00:00</span>
 </div>
 
-<table class="table table-dark">
+<table id=mixing-parameters" class="table table-dark">
     <tr>
         <th>Name</th>
         <th>Color</th>
         <th>Start time</th>
         <th>Volume</th>
+        <th>Pan</th>
     </tr>
 {% for track in tracks %}
     <tr>
@@ -22,15 +24,16 @@
             <input type="color" value="#ffffff"/>
         </td>
         <td><input type="number" step="0.001" value="{{ track.startTime }}"/></td>
-        <td><input class="volumeBar" type="range"  max="100" name="" value="50"></td>
+        <td><input class="volumeBar" type="range"  max="100" name="" value="50" data-id="{{ track.id }}"></td>
+        <td><input class="panBar" type="range"  min="-100" max="100" name="" value="0" data-id="{{ track.id }}"></td>
     </tr>
 {% endfor %}
 </table>
 <table class="table table-dark">
 {% for track in tracks %}
     <tr>
-        <td style="padding:0">
-            <span style="display:inline-block;background-color:white;width:100%;height:1px; opacity:50%;vertical-align: middle;"></span>
+        <td class="visual-track-container" style="padding:0">
+            <span id="visual-track-{{ track.id }}" class="visual-track"> </span>
         </td>
     </tr>
 {% endfor %}

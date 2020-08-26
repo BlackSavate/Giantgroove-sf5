@@ -18,7 +18,7 @@
     </thead>
     <tbody>
     {% for track in tracks  %}
-        <tr class="track" data-audio="{{asset("/audio/") }}{{ track.project.id }}-{{ track.project.slug }}/{{ track.audio }}" data-start="{{ track.startTime }}" >
+        <tr class="track" data-id="{{ track.id }}" data-audio="{{asset("/audio/") }}{{ track.project.id }}-{{ track.project.slug }}/{{ track.audio }}" data-start="{{ track.startTime }}" >
             {#  Track #}
             <td scope="row">
                 {{ track.name }}

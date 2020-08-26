@@ -52,6 +52,7 @@ class TrackController extends BaseController
             $track->setSlug($this->slugger->slug($track->getName()));
             $track->setProject($project);
             $track->setAuthor($user);
+            $track->setStartTime(0);
             $track->setCreatedAt(new \DateTime());
             $em->flush();
 
