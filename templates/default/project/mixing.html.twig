@@ -17,24 +17,21 @@
     </tr>
 {% for track in tracks %}
     <tr>
-        <td>
-            {{ track.name }}
-        </td>
-        <td>
-            <input type="color" value="#ffffff"/>
-        </td>
-        <td><input type="number" step="0.001" value="{{ track.startTime }}"/></td>
+        <td>{{ track.name }}</td>
+        <td><input class="colorInput" type="color" value="#ffffff" data-id="{{ track.id }}"/></td>
+        <td><input class="startTimeInput" type="number" step="0.001" min="0" value="{{ track.startTime }}" data-id="{{ track.id }}"/></td>
         <td><input class="volumeBar" type="range"  max="100" name="" value="50" data-id="{{ track.id }}"></td>
         <td><input class="panBar" type="range"  min="-100" max="100" name="" value="0" data-id="{{ track.id }}"></td>
     </tr>
 {% endfor %}
 </table>
 <table class="table table-dark">
-{% for track in tracks %}
-    <tr>
-        <td class="visual-track-container" style="padding:0">
-            <span id="visual-track-{{ track.id }}" class="visual-track"> </span>
-        </td>
-    </tr>
-{% endfor %}
+    {% for track in tracks %}
+        <tr>
+            <td class="visual-track-container" style="padding:0">
+                <span id="visual-track-{{ track.id }}" class="visual-track"></span>
+                <span class="visual-track-cursor"></span>
+            </td>
+        </tr>
+    {% endfor %}
 </table>
