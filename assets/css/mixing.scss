@@ -16,14 +16,15 @@ input.disabled {
   height: 100%;
   position: absolute;
   background-color: white;
-  opacity: 50%;
+  opacity: 80%;
 }
 .visual-track-cursor {
   display: inline-block;
-  width:1px;
+  width:2px;
   height: 100%;
   position: absolute;
   left: 0;
-  background-color: white;
-  opacity: 50%;
+  background-color: rgb(150, 0, 0);
+  opacity: 100%;
+  border-left: 1px solid red;
 }
