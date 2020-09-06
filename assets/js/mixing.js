@@ -30,6 +30,7 @@ var mixingApp = {
         $('.panBar').on('change', mixingApp.changePan);
         $('.startTimeInput').on('change', mixingApp.updateStartTime);
         $('.colorInput').on('change', mixingApp.changeColor);
+        $('.contribution-select').on('change', mixingApp.changeAudio);
         mixingApp.initStartTime();
     },
     initStartTime: function() {
@@ -40,19 +41,25 @@ var mixingApp = {
     },
     getTrackListData: function(data) {
         var trackList = $('tr[data-audio]');
+        trackList.each(function(track) {
+            if($(this).attr('data-audio') === '') {
+                trackList.splice(track)
+            }
+        })
+
         if(!data) {
             return trackList;
         }
         var dataVal = [];
         trackList.each(function() {
-            dataVal.push($(this).data(data))
+            dataVal.push($(this).attr('data-'+data))
         })
         return dataVal;
     },
     loadTrack: function (track) {
-        var audio = 'http://127.0.0.1:8000/' + track.data('audio');
-        var start = track.data('start');
-        var id = track.data('id');
+        var audio = 'http://127.0.0.1:8000/' + track.attr('data-audio');
+        var start = track.attr('data-start');
+        var id = track.attr('data-id');
         window.fetch(audio)
             .then(response => response.arrayBuffer())
             .then(arrayBuffer => mixingApp.audioContext.decodeAudioData(arrayBuffer))
@@ -81,7 +88,6 @@ var mixingApp = {
         $('.startTimeInput').addClass('disabled');
         $('#play').hide();
         $('#pause').show().focus();
-        $('#stop').removeClass('disabled');
         mixingApp.sources = [];
         mixingApp.gains = [];
         mixingApp.panners = [];
@@ -92,6 +98,7 @@ var mixingApp = {
         var waitLoading = setInterval(function(){
             if(Object.keys(mixingApp.sources).length === trackList.length) {
                 // Tracks are loaded here
+                $('#stop').removeClass('disabled');
                 mixingApp.audioContextStart = mixingApp.audioContext.currentTime;
                 mixingApp.updateCurrentTime();
                 var totalTime = [];
@@ -208,6 +215,20 @@ var mixingApp = {
         visualTrack.css({
             'backgroundColor': $(evt.target).val()
         })
+    },
+    changeAudio: function(evt) {
+        var audio = $(evt.target).val();
+        var trackAudio = $(evt.target).parent().parent();
+        var id = trackAudio.attr('data-id');
+        trackAudio.attr('data-audio', audio);
+        if(audio === ''){
+            $('.track-parameters-row[data-id='+id+']').hide()
+            $('.visual-track-row[data-id='+id+']').hide()
+        }
+        else{
+            $('.track-parameters-row[data-id='+id+']').show()
+            $('.visual-track-row[data-id='+id+']').show()
+        }
     },
     // loadAnalyser: function() {
     //     $(mixingApp.sources).each(function(id) {

@@ -16,7 +16,7 @@
         <th>Pan</th>
     </tr>
 {% for track in tracks %}
-    <tr  class="track-parameters-row" data-id="{{ track.id }}" {% if track.isOpen %}style="display:none"{% endif %}>
+    <tr>
         <td>{{ track.name }}</td>
         <td><input class="colorInput" type="color" value="#ffffff" data-id="{{ track.id }}"/></td>
         <td><input class="startTimeInput" type="number" step="0.001" min="0" value="{{ track.startTime }}" data-id="{{ track.id }}"/></td>
@@ -27,7 +27,7 @@
 </table>
 <table class="table table-dark">
     {% for track in tracks %}
-        <tr class="visual-track-row" data-id="{{ track.id }}" {% if track.isOpen %}style="display:none"{% endif %}>
+        <tr>
             <td class="visual-track-container" style="padding:0">
                 <span id="visual-track-{{ track.id }}" class="visual-track"></span>
                 <span class="visual-track-cursor"></span>

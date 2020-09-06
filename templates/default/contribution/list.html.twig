@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'contribution'|trans|capitalize }}{% endblock %}
+
+{% block breadcrumb %}
+  <a href="{{ path('homepage') }}">{{ 'home'|trans|capitalize }}</a> &gt;
+  <span class="bc-current">{{ 'contributions'|trans|capitalize }}</span>
+{% endblock %}
+
+{% block body %}
+  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <a href="{{ path('contribution_create') }}" class="btn btn-secondary">{{ 'create'|trans|capitalize }}</a>
+    {% if contributionList %}
+      <table>
+        <thead>
+        <th>{{ 'title'|trans|capitalize }}</th>
+        <th>{{ 'author'|trans|capitalize }}</th>
+        </thead>
+        <tbody>
+        {% for contribution in contributionList %}
+          <tr>
+            <td><a href="{{ path('contribution_detail', { 'slug': contribution.slug }) }}">{{ contribution.title }}</a></td>
+            <td><a href="{{ path('user_detail', { 'slug': contribution.author.slug }) }}">{{ contribution.author.username }}</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>{{ 'nothing_to_display'|trans|capitalize }}</p>
+    {% endif %}
+  {% endif %}
+{% endblock %}

@@ -4,7 +4,10 @@
   color:gray;
 }
 input.disabled {
-  background-color: #444;
+   background-color: #444;
+}
+tr.disabled {
+  opacity: 50%;
 }
 .visual-track-container {
   position: relative;

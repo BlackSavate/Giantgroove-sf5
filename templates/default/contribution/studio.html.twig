@@ -18,7 +18,7 @@
     </thead>
     <tbody>
     {% for track in tracks  %}
-        <tr class="track" data-id="{{ track.id }}" data-audio="{% if not track.isOpen %}{{asset("/audio/") }}{{ track.project.id }}-{{ track.project.slug }}/{{ track.audio }}{% endif %}" data-start="{{ track.startTime }}" >
+        <tr class="track" data-id="{{ track.id }}" data-audio="{{asset("/audio/") }}{{ track.project.id }}-{{ track.project.slug }}/{{ track.audio }}" data-start="{{ track.startTime }}" >
             {#  Track #}
             <td scope="row">
                 {{ track.name }}
@@ -30,11 +30,8 @@
             {# Contribution #}
             <td>
                 {% if track.isOpen %}
-                    <select name="contributions" id="contributions-{{ track.id }}" class="contribution-select">
-                        <option value="">{{ 'select_contribution'|trans|capitalize }}</option>
-                        {% for contribution in track.contributions %}
-                            <option value="{{asset("/audio/") }}{{ track.project.id }}-{{ track.project.slug }}/contributions/{{ contribution.audio }}">{{ contribution.slug }}</option>
-                        {% endfor %}
+                    <select name="contributions" id="contributions">
+                        <option>{{ 'select_contribution'|trans|capitalize }}</option>
                     </select>
                 {% else %}
                     <span class="iconify" data-icon="dashicons:lock" data-inline="false"></span>
@@ -53,7 +50,10 @@
             {# Contribute #}
             <td>
                 {% if track.isOpen %}
-                    <a href="{{ path('contribution_create', {'project': project.slug, 'track': track.slug }) }}"><span class="iconify" data-icon="si-glyph:disc-upload" data-inline="false"></span></a>
+                    <label for="file-{{ track.id }}">
+                        <span class="iconify" data-icon="si-glyph:disc-upload" data-inline="false"></span>
+                        <input type="file" id="file-{{ track.id }}" style="display: none" name="" accept="">
+                    </label>
                 {% else %}
                     <span class="iconify" data-icon="dashicons:lock" data-inline="false"></span>
                 {% endif %}
@@ -74,6 +74,7 @@
                 {% endif %}
             </td>
         </tr>
+{#        <audio src="{{asset("/audio/") }}{{ track.project.id }}-{{ track.project.slug }}/{{ track.audio }}"></audio>#}
     {% endfor %}
     </tbody>
 </table>

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block breadcrumb %}
+<a href="{{ path('homepage') }}">{{ 'home'|trans|capitalize }}</a> &gt;
+<a href="{{ path('project_list') }}">{{ 'projects'|trans|capitalize }}</a> &gt;
+<a href="{{ path('project_detail', { 'slug': project.slug }) }}">{{ project.title }}</a> &gt;
+<span class="bc-current">{{ 'edit'|trans|capitalize }}</span>
+{% endblock %}
+
+{% block body %}
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input class="button btn btn-secondary" type="submit" value="{{ 'validate'|trans|capitalize }}" />
+    <button type="button" name="button" class="btn btn-secondary"><a href="{{ path('project_detail', { 'slug': project.slug }) }}">{{ 'back'|trans|capitalize }}</a></button>
+{{ form_end(form) }}
+{% endblock %}

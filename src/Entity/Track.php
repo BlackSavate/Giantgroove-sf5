@@ -59,6 +59,11 @@ class Track
     private $author;
 
     /**
+     * @ORM\OneToMany(targetEntity="Contribution", mappedBy="track")
+     */
+    private $contributions;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -203,6 +208,43 @@ class Track
     {
         $this->author = $author;
 
+        return $this;
+    }
+
+    /**
+     * Get the value of Contributions
+     *
+     * @return mixed
+     */
+    public function getContributions()
+    {
+        return $this->contributions;
+    }
+
+    /**
+     * Set the value of Contributions
+     *
+     * @param mixed contributions
+     *
+     * @return self
+     */
+    public function setContributions($contributions)
+    {
+        $this->contributions = $contributions;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of Contributions
+     *
+     * @param Contribution contribution
+     *
+     * @return self
+     */
+    public function removeContribution(Contribution $contribution)
+    {
+        $this->contributions->removeElement($contribution);
         return $this;
     }
 
