@@ -26,11 +26,16 @@ class TrackType extends AbstractType
                         ])
                     ]
                 ])
-            ->add('isOpen', null,
-                [
-                    'label' => 'Ouvert aux contributions',
-                    'constraints' => []
-                ])
+            ->add('isOpen', ChoiceType::class, [
+                'expanded' => true,
+                'multiple' => false,
+                'label' => false,
+                'choices' => [
+                    'Ouvert aux contributions' => true,
+                    'Fichier audio' => false,
+                ],
+                'data' => 1
+            ])
 //            ->add('sheet', FileType::class,
 //                [
 //                    'label' => 'Partition',

@@ -40,28 +40,7 @@ class TrackController extends BaseController
         $projectRepo = $em->getRepository(Project::class);
         $project = $projectRepo->findOneBySlug($project);
         $track = new Track();
-        $form = $this->createFormBuilder($track)
-            ->add('name', TextType::class,
-                [
-                    'label' => 'Nom',
-                    'constraints' => [
-                        new Assert\NotBlank([
-                            'message' => 'Ce champs est obligatoire'
-                        ])
-                    ]
-                ])
-            ->add('isOpen', ChoiceType::class, [
-                'expanded' => true,
-                'multiple' => false,
-                'label' => false,
-                'choices' => [
-                   'Ouvert aux contributions' => true,
-                   'Fichier audio' => false,
-                ],
-                'data' => 1
-            ])
-            ->add('audio', FileType::class, ['label' => false])
-            ->getForm();
+        $form = $this->createForm(TrackType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
