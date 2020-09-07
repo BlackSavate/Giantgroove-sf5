@@ -1,6 +1,6 @@
 <h1>studio</h1>
 {% if app.user.id == project.author.id %}
-    <a href="{{ path('track_create', {'project': project.id}) }}" class="btn btn-secondary">{{ 'add_track'|trans|capitalize }}</a>
+    <a href="{{ path('track_create', {'project': project.slug}) }}" class="btn btn-secondary">{{ 'add_track'|trans|capitalize }}</a>
 {% endif %}
 
 <table class="table table-dark">
@@ -65,7 +65,7 @@
             <td>
                 {% if app.user == project.author %}
                     <a href="#" ><span class="iconify" data-icon="dashicons:edit" data-inline="false"></span></a>
-                    <form action="{{ path('track_delete', {'project': project.id, 'track': track.id }) }}" method="DELETE">
+                    <form action="{{ path('track_delete', {'project': project.slug, 'track': track.id }) }}" method="DELETE">
                         <label for="delete-track-{{ track.id }}">
                             <span class="iconify" data-icon="ic:round-delete-forever" data-inline="false"></span>
                             <input type="submit" id="delete-track-{{ track.id }}" style="display: none" name="" />

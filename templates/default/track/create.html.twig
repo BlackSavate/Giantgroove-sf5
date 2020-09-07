@@ -12,8 +12,10 @@
 {% block body %}
     <h1>{{ 'add_track'|trans|capitalize }}</h1>
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_row(form.name) }}
+    <div>{{ form_row(form.isOpen) }}</div>
+    <div>{{ form_row(form.audio) }}</div>
     <input type="submit" value="{{ 'add_track'|trans|capitalize }}" class="btn btn-secondary" />
     {{ form_end(form) }}
 

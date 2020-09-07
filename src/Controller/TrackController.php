@@ -6,6 +6,11 @@ namespace App\Controller;
 use App\Entity\Project;
 use App\Entity\Track;
 use App\Form\TrackType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -25,15 +30,38 @@ class TrackController extends BaseController
      * Creates a new track project.
      *
      * @Route("/", name="create", methods={"GET", "POST"})
-     * @ParamConverter("project", class="App:Project")
      * @param Request $request
-     * @param Project $project
+     * @param string $project
      * @return Response
      */
-    public function create(Request $request, Project $project)
+    public function create(Request $request, string $project)
     {
+        $em = $this->getDoctrine()->getManager();
+        $projectRepo = $em->getRepository(Project::class);
+        $project = $projectRepo->findOneBySlug($project);
         $track = new Track();
-        $form = $this->createForm(TrackType::class, $track);
+        $form = $this->createFormBuilder($track)
+            ->add('name', TextType::class,
+                [
+                    'label' => 'Nom',
+                    'constraints' => [
+                        new Assert\NotBlank([
+                            'message' => 'Ce champs est obligatoire'
+                        ])
+                    ]
+                ])
+            ->add('isOpen', ChoiceType::class, [
+                'expanded' => true,
+                'multiple' => false,
+                'label' => false,
+                'choices' => [
+                   'Ouvert aux contributions' => true,
+                   'Fichier audio' => false,
+                ],
+                'data' => 1
+            ])
+            ->add('audio', FileType::class, ['label' => false])
+            ->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -41,14 +69,28 @@ class TrackController extends BaseController
             $em->persist($track);
             $user = $this->getUser();
             $audio = $track->getAudio();
-            if (null != $audio) {
-                $fileName = $this->generateUniqueFileName().'.'.$audio->guessExtension();
-                $audio->move(
-                    $this->getParameter('project_audio_directory').'/'.$project->getId().'-'.$project->getSlug(),
-                    $fileName
-                );
-                $track->setAudio($fileName);
+            if (!$track->getIsOpen()) {
+                if (null != $audio ) {
+                    $fileName = $this->generateUniqueFileName().'.'.$audio->guessExtension();
+                    $audio->move(
+                        $this->getParameter('project_audio_directory').'/'.$project->getId().'-'.$project->getSlug(),
+                        $fileName
+                    );
+                    $track->setAudio($fileName);
+                }
+                else {
+                    $this->addFlash('error', 'La piste doit soit être ouverte aux contributions, soit comporter un fichier audio valide');
+                    return $this->render('default/track/create.html.twig', array(
+                        'track' => $track,
+                        'project' => $project,
+                        'form' => $form->createView(),
+                    ));
+                }
             }
+            else {
+                $track->setAudio(null);
+            }
+
             $track->setSlug($this->slugger->slug($track->getName()));
             $track->setProject($project);
             $track->setAuthor($user);
@@ -70,6 +112,7 @@ class TrackController extends BaseController
      * Deletes a track entity.
      *
      * @Route("/{track}", name="delete")
+     * @ParamConverter("track", class="App:Track")
      * @Method("DELETE")
      */
     public function delete(Request $request, Track $track)
