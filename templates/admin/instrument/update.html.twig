@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'edit'|trans|capitalize }} {{ instrument.name }}{% endblock %}
+
+{% block breadcrumb %}
+    <a href="{{ path('homepage') }}">{{ 'home'|trans|capitalize }}</a> &gt;
+    <a href="{{ path('admin_dashboard_dashboard') }}">{{ 'admin'|trans|capitalize }}</a> &gt;
+    <a href="{{ path('admin_instrument_list') }}">{{ 'instruments'|trans|capitalize }}</a> &gt;
+    <span class="bc-current">{{ instrument.name|capitalize }}</span>
+{% endblock %}
+
+{% block body %}
+  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+  {{ form_start(form) }}
+      {{ form_widget(form) }}
+      <input class="button btn btn-secondary" type="submit" value="{{ 'edit'|trans|capitalize }}" />
+  {{ form_end(form) }}
+  {% endif %}
+{% endblock %}

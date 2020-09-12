@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'admin'|trans|capitalize }} {{ 'dashboard'|trans|capitalize }}{% endblock %}
+
+{% block breadcrumb %}
+  <a href="{{ path('homepage') }}">{{ 'home'|trans|capitalize }}</a> &gt;
+  <a href="{{ path('admin_dashboard_dashboard') }}">{{ 'admin'|trans|capitalize }}</a> &gt;
+  <span class="bc-current">{{ 'instruments'|trans|capitalize }}</span>
+{% endblock %}
+
+{% block body %}
+  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% if instrumentList %}
+      <table>
+        <thead>
+          <th>Id</th>
+          <th>{{ 'title'|trans|capitalize }}</th>
+          <th>{{ 'actions'|trans|capitalize }}</th>
+        </thead>
+        <tbody>
+          {% for instrument in instrumentList %}
+            <tr>
+              <td>{{ instrument.id }}</td>
+              <td>{{ instrument.name }}</td>
+              <td>
+                <ul>
+                  <li>
+                    <a href="{{ path('admin_instrument_update', {'slug':  instrument.slug}) }}" class="btn btn-warning">{{ 'edit'|trans|capitalize }}</a>
+                  </li>
+                  <li>
+                    <form action="{{ path('admin_instrument_delete', {'instrument': instrument.id }) }}" method="post">
+                        <input type="hidden" name="_method" value="DELETE"/>
+                        <input type="submit" class="btn btn-danger" value="{{ 'delete'|trans|capitalize }}"/>
+                    </form>
+                  </li>
+              </ul>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p>{{ 'nothing_to_display'|trans|capitalize }}</p>
+    {% endif %}
+    <a class="btn btn-secondary" href="{{ path('admin_instrument_create') }}">Ajouter</a>
+  {% endif %}
+{% endblock %}
