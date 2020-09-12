@@ -28,6 +28,11 @@ class Instrument
     private $slug;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Track", mappedBy="intruments")
+     */
+    private $tracks;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -67,6 +72,29 @@ class Instrument
         return $this;
     }
 
+    /**
+     * Get the value of Tracks
+     *
+     * @return mixed
+     */
+    public function getTracks()
+    {
+        return $this->tracks;
+    }
+
+    /**
+     * Set the value of Tracks
+     *
+     * @param mixed tracks
+     *
+     * @return Track
+     */
+    public function setTracks($tracks)
+    {
+        $this->tracks = $tracks;
+
+        return $this;
+    }
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
@@ -90,5 +118,9 @@ class Instrument
         $this->updated_at = $updated_at;
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->name;
     }
 }

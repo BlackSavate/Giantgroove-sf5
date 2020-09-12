@@ -44,3 +44,10 @@ username: nom d'utilisateur
 users: utilisateurs
 validate: valider
 yes: oui
+
+instruments:
+  bass: basse
+  drum: batterie
+  guitar: guitare
+  piano: ~
+  voice: voix

@@ -25,7 +25,9 @@
             </td>
             {# Instrument #}
             <td>
-                <img src="https://via.placeholder.com/25"/>
+                {% for instrument in track.instruments %}
+                <img src="https://via.placeholder.com/25" title="{{ instrument }}"/>
+                {% endfor %}
             </td>
             {# Contribution #}
             <td>

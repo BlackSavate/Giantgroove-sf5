@@ -15,7 +15,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -40,7 +39,7 @@ class TrackController extends BaseController
         $projectRepo = $em->getRepository(Project::class);
         $project = $projectRepo->findOneBySlug($project);
         $track = new Track();
-        $form = $this->createForm(TrackType::class);
+        $form = $this->createForm(TrackType::class, $track);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -90,9 +89,8 @@ class TrackController extends BaseController
     /**
      * Deletes a track entity.
      *
-     * @Route("/{track}", name="delete")
+     * @Route("/{track}", name="delete", methods={"DELETE"})
      * @ParamConverter("track", class="App:Track")
-     * @Method("DELETE")
      */
     public function delete(Request $request, Track $track)
     {

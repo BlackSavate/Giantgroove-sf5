@@ -49,6 +49,11 @@ class Track
     private $startTime;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Instrument", inversedBy="tracks")
+     */
+    private $instruments;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Project", inversedBy="tracks")
      */
     private $project;
@@ -183,6 +188,30 @@ class Track
     public function setProject($project)
     {
         $this->project = $project;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Instruments
+     *
+     * @return mixed
+     */
+    public function getInstruments()
+    {
+        return $this->instruments;
+    }
+
+    /**
+     * Set the value of Instruments
+     *
+     * @param mixed instruments
+     *
+     * @return Track
+     */
+    public function setInstruments($instruments)
+    {
+        $this->instruments = $instruments;
 
         return $this;
     }
